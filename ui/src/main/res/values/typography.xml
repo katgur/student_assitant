@@ -2,11 +2,11 @@
 <resources>
 
     <style name="TextAppearance.Medium" parent="TextAppearance.AppCompat.Medium">
-        <item name="android:fontFamily">@font/Avanti_Bold</item>
+        <item name="android:fontFamily">@font/louisgeorgecafe_bold</item>
     </style>
 
     <style name="TextAppearance.Regular" parent="TextAppearance.AppCompat">
-        <item name="android:fontFamily">@font/Avanti_Regular</item>
+        <item name="android:fontFamily">@font/louisgeorgecafe_regular</item>
     </style>
 
     <style name="LargeTitle" parent="TextAppearance.Medium">
@@ -34,10 +34,27 @@
         <item name="android:lineSpacingExtra">10sp</item>
     </style>
 
-    <style name="PreviewText" parent="TextAppearance.Regular">
+    <style name="TextAppearance.StudentAssistant.Input" parent="TextAppearance.Regular">
         <item name="android:textSize">16sp</item>
         <item name="android:lineSpacingExtra">6sp</item>
-        <item name="android:textColor">@color/neutral60</item>
-        <item name="android:fontFamily">@font/Avanti_Regular</item>
     </style>
+
+    <style name="Button" parent="TextAppearance.Medium">
+        <item name="android:textSize">14sp</item>
+        <item name="android:lineSpacingExtra">10sp</item>
+        <item name="android:letterSpacing">0.05</item>
+    </style>
+
+    <style name="TextAppearance.StudentAssistant.SmallBadge" parent="TextAppearance.Medium">
+        <item name="android:textSize">12sp</item>
+        <item name="android:lineSpacingExtra">10sp</item>
+        <item name="android:letterSpacing">0.06</item>
+    </style>
+
+    <style name="TextAppearance.StudentAssistant.Tab" parent="TextAppearance.Medium">
+        <item name="android:textSize">12sp</item>
+        <item name="android:lineSpacingExtra">10sp</item>
+        <item name="android:letterSpacing">0.02</item>
+    </style>
+
 </resources>
