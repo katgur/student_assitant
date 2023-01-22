@@ -9,29 +9,59 @@
         <item name="android:fontFamily">@font/louisgeorgecafe_regular</item>
     </style>
 
-    <style name="LargeTitle" parent="TextAppearance.Medium">
+    <style name="TextAppearance.StudentAssistant.LargeTitle" parent="TextAppearance.Medium">
         <item name="android:textSize">32sp</item>
         <item name="android:lineSpacingExtra">12sp</item>
     </style>
 
-    <style name="Title" parent="TextAppearance.Medium">
+    <style name="TextAppearance.StudentAssistant.LargeTitle.Neutral90" parent="TextAppearance.StudentAssistant.LargeTitle">
+        <item name="android:textSize">32sp</item>
+        <item name="android:lineSpacingExtra">12sp</item>
+        <item name="android:textColor">@color/neutral90</item>
+    </style>
+
+    <style name="TextAppearance.StudentAssistant.Title" parent="TextAppearance.Medium">
         <item name="android:textSize">24sp</item>
         <item name="android:lineSpacingExtra">10sp</item>
     </style>
 
-    <style name="SmallTitle" parent="TextAppearance.Medium">
+    <style name="TextAppearance.StudentAssistant.Title.Neutral90" parent="TextAppearance.StudentAssistant.Title">
+        <item name="android:textSize">24sp</item>
+        <item name="android:lineSpacingExtra">10sp</item>
+        <item name="android:textColor">@color/neutral90</item>
+    </style>
+
+    <style name="TextAppearance.StudentAssistant.SmallTitle" parent="TextAppearance.Medium">
         <item name="android:textSize">16sp</item>
         <item name="android:lineSpacingExtra">10sp</item>
     </style>
 
-    <style name="Text" parent="TextAppearance.Regular">
+    <style name="TextAppearance.StudentAssistant.SmallTitle.Neutral90" parent="TextAppearance.StudentAssistant.SmallTitle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">10sp</item>
+        <item name="android:textColor">@color/neutral90</item>
+    </style>
+
+    <style name="TextAppearance.StudentAssistant.Text" parent="TextAppearance.Regular">
         <item name="android:textSize">14sp</item>
         <item name="android:lineSpacingExtra">10sp</item>
     </style>
 
-    <style name="SmallText" parent="TextAppearance.Regular">
+    <style name="TextAppearance.StudentAssistant.Text.Neutral90" parent="TextAppearance.StudentAssistant.Text">
+        <item name="android:textSize">14sp</item>
+        <item name="android:lineSpacingExtra">10sp</item>
+        <item name="android:textColor">@color/neutral90</item>
+    </style>
+
+    <style name="TextAppearance.StudentAssistant.SmallText" parent="TextAppearance.Regular">
         <item name="android:textSize">12sp</item>
         <item name="android:lineSpacingExtra">10sp</item>
+    </style>
+
+    <style name="TextAppearance.StudentAssistant.SmallText.Neutral90" parent="TextAppearance.StudentAssistant.SmallText">
+        <item name="android:textSize">12sp</item>
+        <item name="android:lineSpacingExtra">10sp</item>
+        <item name="android:textColor">@color/neutral90</item>
     </style>
 
     <style name="TextAppearance.StudentAssistant.Input" parent="TextAppearance.Regular">

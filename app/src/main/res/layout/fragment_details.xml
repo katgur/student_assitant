@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/details_tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="32dp"
+        style="@style/TextAppearance.StudentAssistant.Title.Neutral90"
+        android:textColor="@color/neutral90"
+        android:text="New Very Important Research"/>
+
+    <TextView
+        android:id="@+id/details_tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginVertical="14dp"
+        style="@style/TextAppearance.StudentAssistant.Title.Neutral90"
+        android:textColor="@color/neutral90"
+        android:text="05 dec - 12 dec"/>
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/neutral20" />
+
+    <TextView
+        android:id="@+id/details_tv_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginVertical="14dp"
+        style="@style/TextAppearance.StudentAssistant.Title.Neutral90"
+        android:textColor="@color/neutral90"
+        android:text="Details" />
+
+    <TextView
+        android:id="@+id/details_tv_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginVertical="4dp"
+        style="@style/TextAppearance.StudentAssistant.SmallTitle.Neutral90"
+        android:textColor="@color/neutral90"
+        android:text="Description" />
+
+    <TextView
+        android:id="@+id/details_tv_description_val"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        style="@style/TextAppearance.StudentAssistant.Text.Neutral90"
+        android:text="Take a part in a new super modern research project." />
+
+    <TextView
+        android:id="@+id/details_tv_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="4dp"
+        android:layout_marginHorizontal="24dp"
+        style="@style/TextAppearance.StudentAssistant.SmallTitle.Neutral90"
+        android:textColor="@color/neutral90"
+        android:text="Number of students" />
+
+    <TextView
+        android:id="@+id/details_tv_count_val"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        style="@style/TextAppearance.StudentAssistant.Text.Neutral90"
+        android:text="5" />
+
+    <TextView
+        android:id="@+id/details_tv_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="4dp"
+        android:layout_marginHorizontal="24dp"
+        style="@style/TextAppearance.StudentAssistant.SmallTitle.Neutral90"
+        android:textColor="@color/neutral90"
+        android:text="Project status" />
+
+    <TextView
+        android:id="@+id/details_tv_status_val"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        style="@style/TextAppearance.StudentAssistant.Text.Neutral90"
+        android:text="Created" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginVertical="14dp"
+        style="@style/TextAppearance.StudentAssistant.Title.Neutral90"
+        android:textColor="@color/neutral90"
+        android:text="Tags" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            style="@style/Theme.StudentAssistant.SmallBadge"
+            android:text="Machine Learning" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            style="@style/Theme.StudentAssistant.SmallBadge"
+            android:text="NLP" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            style="@style/Theme.StudentAssistant.SmallBadge"
+            android:text="Web" />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="32dp"
+        android:layout_marginHorizontal="24dp"
+        style="@style/Theme.StudentAssistant.LargeButton"
+        android:text="Join project" />
+
+</LinearLayout>
