@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 rootProject.name = "student_assistant"
 include ':app'
 include ':ui'
+include ':ui'

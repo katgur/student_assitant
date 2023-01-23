@@ -1,4 +1,4 @@
-package com.example.student_assistant
+package com.example.student_assistant.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.student_assistant.databinding.FragmentFiltersBinding
-import com.example.student_assistant.databinding.FragmentMainBinding
 
 class FiltersFragment : Fragment() {
 

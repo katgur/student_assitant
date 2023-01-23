@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.student_assistant.MainFragment"
+        android:name="com.example.student_assistant.ui.fragment.MainFragment"
         android:label="MainFragment" >
         <action
             android:id="@+id/action_mainFragment_to_filtersFragment"
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/filtersFragment"
-        android:name="com.example.student_assistant.FiltersFragment"
+        android:name="com.example.student_assistant.ui.fragment.FiltersFragment"
         android:label="FiltersFragment" >
         <action
             android:id="@+id/action_filtersFragment_to_parametersFragment"
@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/projectEditFragment"
-        android:name="com.example.student_assistant.ProjectEditFragment"
+        android:name="com.example.student_assistant.ui.fragment.ProjectEditFragment"
         android:label="ProjectEditFragment" >
         <action
             android:id="@+id/action_projectEditFragment_to_parametersFragment"
@@ -40,12 +40,12 @@
     </fragment>
     <fragment
         android:id="@+id/parametersFragment"
-        android:name="com.example.student_assistant.ParametersFragment"
+        android:name="com.example.student_assistant.ui.fragment.ParametersFragment"
         android:label="fragment_parameters"
         tools:layout="@layout/fragment_parameters" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.student_assistant.ProfileFragment"
+        android:name="com.example.student_assistant.ui.fragment.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -54,7 +54,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileEditFragment"
-        android:name="com.example.student_assistant.ProfileEditFragment"
+        android:name="com.example.student_assistant.ui.fragment.ProfileEditFragment"
         android:label="fragment_profile_edit"
         tools:layout="@layout/fragment_profile_edit" >
         <action
@@ -63,7 +63,7 @@
     </fragment>
     <fragment
         android:id="@+id/authFragment"
-        android:name="com.example.student_assistant.AuthFragment"
+        android:name="com.example.student_assistant.ui.fragment.AuthFragment"
         android:label="fragment_auth"
         tools:layout="@layout/fragment_auth" >
         <action

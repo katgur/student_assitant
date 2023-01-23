@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:paddingHorizontal="24dp"
-    tools:context=".ProfileEditFragment">
+    tools:context=".ui.fragment.ProfileEditFragment">
 
     <TextView
         android:layout_width="wrap_content"
