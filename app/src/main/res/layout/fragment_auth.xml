@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".AuthFragment">
+
+    <TextView
+        android:id="@+id/auth_tv_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log in"
+        android:layout_gravity="start"
+        android:layout_marginBottom="30dp"
+        android:layout_marginStart="24dp"
+        android:textAppearance="@style/TextAppearance.StudentAssistant.LargeTitle.Neutral90"
+        android:textColor="@color/neutral90" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="E-mail"
+        android:layout_marginHorizontal="24dp"
+        style="@style/Theme.StudentAssistant.EditText" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="22dp"
+        style="@style/Theme.StudentAssistant.EditText" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Log in"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="22dp"
+        style="@style/Theme.StudentAssistant.LargeButton" />
+
+</LinearLayout>

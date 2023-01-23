@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/authFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.student_assistant.MainFragment"
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_filtersFragment"
+            app:destination="@id/filtersFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_projectEditFragment"
+            app:destination="@id/projectEditFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_profileEditFragment"
+            app:destination="@id/profileEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/filtersFragment"
+        android:name="com.example.student_assistant.FiltersFragment"
+        android:label="FiltersFragment" >
+        <action
+            android:id="@+id/action_filtersFragment_to_parametersFragment"
+            app:destination="@id/parametersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/projectEditFragment"
+        android:name="com.example.student_assistant.ProjectEditFragment"
+        android:label="ProjectEditFragment" >
+        <action
+            android:id="@+id/action_projectEditFragment_to_parametersFragment"
+            app:destination="@id/parametersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/parametersFragment"
+        android:name="com.example.student_assistant.ParametersFragment"
+        android:label="fragment_parameters"
+        tools:layout="@layout/fragment_parameters" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.student_assistant.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_profileEditFragment"
+            app:destination="@id/profileEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileEditFragment"
+        android:name="com.example.student_assistant.ProfileEditFragment"
+        android:label="fragment_profile_edit"
+        tools:layout="@layout/fragment_profile_edit" >
+        <action
+            android:id="@+id/action_profileEditFragment_to_parametersFragment"
+            app:destination="@id/parametersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="com.example.student_assistant.AuthFragment"
+        android:label="fragment_auth"
+        tools:layout="@layout/fragment_auth" >
+        <action
+            android:id="@+id/action_authFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+</navigation>
