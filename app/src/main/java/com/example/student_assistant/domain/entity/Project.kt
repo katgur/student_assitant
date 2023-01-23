@@ -8,6 +8,5 @@ data class Project(
     val endDate: Long,
     val studentNumber: Int,
     val dueDate: Long,
-    val status: Int,
-    val isRecommended: Boolean
+    val status: Int
 )
