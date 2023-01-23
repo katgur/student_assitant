@@ -1,4 +1,4 @@
-package com.example.student_assistant.data
+package com.example.student_assistant.data.local
 
 import androidx.room.Dao
 import androidx.room.Insert
