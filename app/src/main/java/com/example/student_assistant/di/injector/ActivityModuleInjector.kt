@@ -1,7 +1,7 @@
 package com.example.student_assistant.di.injector
 
+import com.example.student_assistant.ui.SampleActivity
 import com.example.student_assistant.di.scope.ActivityScope
-import com.example.student_assistant.SampleActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
