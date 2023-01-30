@@ -1,4 +1,4 @@
-package com.example.student_assistant.ui.stateholder
+package com.example.student_assistant.ui.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

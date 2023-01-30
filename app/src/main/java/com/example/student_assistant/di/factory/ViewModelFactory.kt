@@ -3,7 +3,7 @@ package com.example.student_assistant.di.factory
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.student_assistant.domain.repository.ICardRepository
-import com.example.student_assistant.ui.stateholder.MainViewModel
+import com.example.student_assistant.ui.main.MainViewModel
 import com.example.student_assistant.ui.stateholder.ProfileViewModel
 import com.example.student_assistant.ui.stateholder.ProjectViewModel
 import javax.inject.Inject
