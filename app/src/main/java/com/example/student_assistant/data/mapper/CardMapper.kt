@@ -2,8 +2,9 @@ package com.example.student_assistant.data.mapper
 
 import com.example.student_assistant.data.entity.CardDB
 import com.example.student_assistant.domain.entity.Card
+import javax.inject.Inject
 
-class CardMapper {
+class CardMapper @Inject constructor() {
 
     fun map(dto: CardDB): Card {
         return Card(dto.id, dto.projectId, dto.creatorId, dto.link)

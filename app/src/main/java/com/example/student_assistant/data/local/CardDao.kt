@@ -31,8 +31,8 @@ interface CardDao {
             "WHERE name LIKE :name AND " +
             "description LIKE :description AND start_date < :startDate AND " +
             "end_date > :endDate AND student_number > :minStudentNumber AND " +
-            "student_number < :maxStudentNumber AND due_date > minDueDate AND " +
-            "due_date < maxDueDate AND status == :status")
+            "student_number < :maxStudentNumber AND due_date > :minDueDate AND " +
+            "due_date < :maxDueDate AND status == :status")
     fun getCardsByFilter(name: String, description: String, startDate: Long,
                          endDate: Long, minStudentNumber: Int, maxStudentNumber: Int,
                          minDueDate: Long, maxDueDate: Long, status: Int): Map<CardDB, List<ProjectDB>>
