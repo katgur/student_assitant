@@ -5,8 +5,8 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.student_assistant.data.entity.CardDB
-import com.example.student_assistant.data.entity.ProjectDB
+import com.example.student_assistant.data.local.entity.CardDB
+import com.example.student_assistant.data.local.entity.ProjectDB
 
 @Dao
 interface CardDao {

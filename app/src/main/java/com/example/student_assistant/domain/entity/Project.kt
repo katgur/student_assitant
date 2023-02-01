@@ -1,7 +1,7 @@
 package com.example.student_assistant.domain.entity
 
 data class Project(
-    val id: Int,
+    val id: String,
     val name: String,
     val description: String,
     val startDate: String,

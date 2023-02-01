@@ -1,4 +1,4 @@
-package com.example.student_assistant.data.entity
+package com.example.student_assistant.data.local.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "project")
 data class ProjectDB(
-    @PrimaryKey val id: Int,
+    @PrimaryKey val id: String,
     val name: String,
     val description: String,
     @ColumnInfo(name = "start_date") val startDate: Long,

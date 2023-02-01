@@ -5,22 +5,28 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.student_assistant.domain.entity.Card
+import com.example.student_assistant.domain.entity.Interest
 import com.example.student_assistant.domain.entity.Project
+import com.example.student_assistant.domain.entity.Status
 import com.example.student_assistant.domain.repository.ICardRepository
 import com.example.student_assistant.domain.repository.IProjectRepository
 import kotlinx.coroutines.launch
 import java.util.UUID
 import javax.inject.Inject
 
-class ProjectViewModel @Inject constructor(private val repository: ICardRepository) : ViewModel() {
+class ProjectViewModel @Inject constructor(private val repository: ICardRepository,
+private val repository1: IProjectRepository) : ViewModel() {
 
-    private val _project = MutableLiveData<Project>(Project(0, "Test", "abcdefghijklmnop", 12345,
-        123456, 2, 123, 0))
+    private val _project = MutableLiveData<Project>()
     val project: LiveData<Project> = _project
 
     fun addProject() {
         viewModelScope.launch {
-            repository.addCard(Card(1, 1, 0, "abcdef"))
+            val project = Project(UUID.randomUUID().toString(),
+                "Test", "abcdefghijklmnop", "01 февраля",
+                "12 февраля", 2, "02 февраля", Status.VACANT, emptyList())
+            repository1.addProject(project)
+            repository.addCard(Card(UUID.randomUUID().toString(), project.id, "", "abcdef"))
         }
     }
 }

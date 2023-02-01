@@ -1,6 +1,6 @@
 package com.example.student_assistant.data.mapper
 
-import com.example.student_assistant.data.entity.CardDB
+import com.example.student_assistant.data.local.entity.CardDB
 import com.example.student_assistant.domain.entity.Card
 import javax.inject.Inject
 

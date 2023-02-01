@@ -5,7 +5,7 @@ import java.util.*
 
 object DateUtil {
 
-    private val formatter = SimpleDateFormat("dd.MMMM.yyyy", Locale("ru"))
+    private val formatter = SimpleDateFormat("dd MMMM", Locale("ru"))
 
     fun getMillis(day: Int, month: Int, year: Int): Long {
         return Calendar.getInstance().apply {

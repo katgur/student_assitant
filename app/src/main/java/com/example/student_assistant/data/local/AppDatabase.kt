@@ -5,13 +5,13 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.student_assistant.data.entity.CardDB
-import com.example.student_assistant.data.entity.ProjectDB
-import com.example.student_assistant.data.entity.UserDB
-import com.example.student_assistant.data.local.converter.ListConverter
+import com.example.student_assistant.data.local.entity.CardDB
+import com.example.student_assistant.data.local.entity.ProjectDB
+import com.example.student_assistant.data.local.entity.UserDB
+import com.example.student_assistant.data.local.converter.DBConverter
 
 @Database(entities = [UserDB::class, ProjectDB::class, CardDB::class], version = 1)
-@TypeConverters(ListConverter::class)
+@TypeConverters(DBConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 
     companion object {

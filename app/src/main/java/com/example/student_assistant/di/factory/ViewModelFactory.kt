@@ -21,7 +21,7 @@ class ViewModelFactory @Inject constructor(
         else if (modelClass.isAssignableFrom(ProfileViewModel::class.java))
             ProfileViewModel() as T
         else if (modelClass.isAssignableFrom(ProjectViewModel::class.java))
-            ProjectViewModel(cardRepository) as T
+            ProjectViewModel(cardRepository, projectRepository) as T
         else
             throw IllegalArgumentException("ViewModel $modelClass Not Found")
     }
