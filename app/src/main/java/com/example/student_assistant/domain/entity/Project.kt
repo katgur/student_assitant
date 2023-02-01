@@ -4,9 +4,10 @@ data class Project(
     val id: Int,
     val name: String,
     val description: String,
-    val startDate: Long,
-    val endDate: Long,
+    val startDate: String,
+    val endDate: String,
     val studentNumber: Int,
-    val dueDate: Long,
-    val status: Int
+    val dueDate: String,
+    val status: Status,
+    val parameters: List<Interest>,
 )

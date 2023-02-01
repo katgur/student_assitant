@@ -5,11 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.student_assistant.databinding.ItemFilterBinding
-import com.example.student_assistant.domain.entity.Parameter
-import com.example.student_assistant.ui.main.adapter.CardAdapter
+import com.example.student_assistant.domain.entity.Interest
 import javax.inject.Inject
 
-class ParameterAdapter @Inject constructor(diffCalculator: ParameterDiffCalculator) : ListAdapter<Parameter, ParameterAdapter.ParameterViewHolder>(diffCalculator) {
+class ParameterAdapter @Inject constructor(diffCalculator: ParameterDiffCalculator) : ListAdapter<Interest, ParameterAdapter.ParameterViewHolder>(diffCalculator) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParameterAdapter.ParameterViewHolder {
         val binding = ItemFilterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -22,9 +21,8 @@ class ParameterAdapter @Inject constructor(diffCalculator: ParameterDiffCalculat
     }
 
     class ParameterViewHolder(private val binding: ItemFilterBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Parameter) {
+        fun bind(item: Interest) {
             binding.itemFilterTvItem.text = item.name
-            binding.itemFilterCb.isChecked = item.isChecked
         }
     }
 }
