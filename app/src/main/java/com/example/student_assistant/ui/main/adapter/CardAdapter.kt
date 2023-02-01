@@ -1,5 +1,6 @@
 package com.example.student_assistant.ui.main.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +10,9 @@ import com.example.student_assistant.R
 import com.example.student_assistant.domain.entity.Card
 import javax.inject.Inject
 import com.example.student_assistant.databinding.ItemCardBinding
+import com.example.student_assistant.domain.entity.Project
 
-class CardAdapter @Inject constructor(diffCalculator: CardDiffCalculator) : ListAdapter<Card, CardAdapter.CardViewHolder>(diffCalculator) {
+class CardAdapter @Inject constructor(diffCalculator: CardDiffCalculator) : ListAdapter<Pair<Card, Project>, CardAdapter.CardViewHolder>(diffCalculator) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
         val binding = ItemCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -22,10 +24,10 @@ class CardAdapter @Inject constructor(diffCalculator: CardDiffCalculator) : List
     }
 
     class CardViewHolder(private val binding: ItemCardBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Card) {
-            binding.iCardTvTitle.text = item.id.toString()
-            binding.iCardTvText.text = item.link
-            binding.iCardTvTime.text = item.projectId.toString()
+        fun bind(item: Pair<Card, Project>) {
+            binding.iCardTvTitle.text = item.second.name
+            binding.iCardTvText.text = item.second.description
+            binding.iCardTvTime.text = "Due to ${item.second.dueDate}"
         }
     }
 }

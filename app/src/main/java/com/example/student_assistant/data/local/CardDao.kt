@@ -15,7 +15,7 @@ interface CardDao {
     suspend fun getAll(): List<CardDB>
 
     @Query("SELECT * FROM card WHERE id = :id")
-    suspend fun getCardById(id: Int): CardDB
+    suspend fun getCardById(id: String): CardDB
 
     @Insert
     suspend fun addCard(card: CardDB)

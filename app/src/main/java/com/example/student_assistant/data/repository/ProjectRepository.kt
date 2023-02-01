@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class ProjectRepository @Inject constructor(private val dao: ProjectDao, private val mapper: ProjectMapper) : IProjectRepository {
 
-    override suspend fun getProjectById(id: Int): Project {
+    override suspend fun getProjectById(id: String): Project {
         return dao.getProjectById(id).run { mapper.map(this) }
     }
 
