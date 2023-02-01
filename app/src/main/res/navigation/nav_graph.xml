@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/filtersFragment"
-        android:name="com.example.student_assistant.ui.fragment.FiltersFragment"
+        android:name="com.example.student_assistant.ui.filter.FiltersFragment"
         android:label="FiltersFragment" >
         <action
             android:id="@+id/action_filtersFragment_to_parametersFragment"
@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/projectEditFragment"
-        android:name="com.example.student_assistant.ui.fragment.ProjectEditFragment"
+        android:name="com.example.student_assistant.ui.project.ProjectEditFragment"
         android:label="ProjectEditFragment" >
         <action
             android:id="@+id/action_projectEditFragment_to_parametersFragment"
@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/parametersFragment"
-        android:name="com.example.student_assistant.ui.fragment.ParametersFragment"
+        android:name="com.example.student_assistant.ui.parameter.ParametersFragment"
         android:label="fragment_parameters"
         tools:layout="@layout/fragment_parameters" />
     <fragment

@@ -17,4 +17,8 @@ abstract class RepositoryModule {
     @Binds
     @AppScope
     abstract fun bindsCardRepository(impl: CardRepository): ICardRepository
+
+    @Binds
+    @AppScope
+    abstract fun bindsProjectRepository(impl: ProjectRepository): IProjectRepository
 }

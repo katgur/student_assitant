@@ -11,17 +11,17 @@ import com.example.student_assistant.data.entity.ProjectDB
 interface ProjectDao {
 
     @Query("SELECT * FROM project")
-    fun getAllProjects(): List<ProjectDB>
+    suspend fun getAllProjects(): List<ProjectDB>
 
     @Insert
-    fun addProject(project: ProjectDB)
+    suspend fun addProject(project: ProjectDB)
 
     @Query("SELECT * FROM project WHERE id = :id")
-    fun getProjectById(id: Int): ProjectDB
+    suspend fun getProjectById(id: Int): ProjectDB
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun updateProject(project: ProjectDB)
+    suspend fun updateProject(project: ProjectDB)
 
     @Delete
-    fun deleteProject(project: ProjectDB)
+    suspend fun deleteProject(project: ProjectDB)
 }

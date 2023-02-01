@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingTop="20dp"
-        tools:context=".ui.fragment.ProjectEditFragment">
+        tools:context=".ui.project.ProjectEditFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -203,6 +203,7 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/project_btn_delete"
                 style="@style/Theme.StudentAssistant.TransparentButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -211,6 +212,7 @@
                 android:text="Delete" />
 
             <Button
+                android:id="@+id/project_btn_save"
                 style="@style/Theme.StudentAssistant.SmallButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

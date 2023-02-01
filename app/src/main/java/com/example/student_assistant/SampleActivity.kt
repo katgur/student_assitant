@@ -1,8 +1,7 @@
-package com.example.student_assistant.ui
+package com.example.student_assistant
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.student_assistant.R
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector

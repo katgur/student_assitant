@@ -12,19 +12,19 @@ import com.example.student_assistant.data.entity.ProjectDB
 interface CardDao {
 
     @Query("SELECT * FROM card")
-    fun getAll(): List<CardDB>
+    suspend fun getAll(): List<CardDB>
 
     @Query("SELECT * FROM card WHERE id = :id")
-    fun getCardById(id: Int): CardDB
+    suspend fun getCardById(id: Int): CardDB
 
     @Insert
-    fun addCard(card: CardDB)
+    suspend fun addCard(card: CardDB)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun updateCard(card: CardDB)
+    suspend fun updateCard(card: CardDB)
 
     @Delete
-    fun deleteCard(card: CardDB)
+    suspend fun deleteCard(card: CardDB)
 
     @Query("SELECT * FROM " +
             "card JOIN project ON card.project_id = project.id " +
@@ -33,12 +33,12 @@ interface CardDao {
             "end_date > :endDate AND student_number > :minStudentNumber AND " +
             "student_number < :maxStudentNumber AND due_date > :minDueDate AND " +
             "due_date < :maxDueDate AND status == :status")
-    fun getCardsByFilter(name: String, description: String, startDate: Long,
+    suspend fun getCardsByFilter(name: String, description: String, startDate: Long,
                          endDate: Long, minStudentNumber: Int, maxStudentNumber: Int,
                          minDueDate: Long, maxDueDate: Long, status: Int): Map<CardDB, List<ProjectDB>>
 
     @Query("SELECT * FROM " +
             "card JOIN project ON card.project_id = project.id " +
             "WHERE is_recommended = TRUE")
-    fun getRecommendedProjects(): Map<CardDB, List<ProjectDB>>
+    suspend fun getRecommendedProjects(): Map<CardDB, List<ProjectDB>>
 }

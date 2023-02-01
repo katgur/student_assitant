@@ -7,7 +7,7 @@ import com.example.student_assistant.domain.repository.IUserRepository
 
 class UserRepository(private val dao: UserDao, private val mapper: UserMapper) : IUserRepository {
 
-    override fun getUserById(id: Int): User {
+    override suspend fun getUserById(id: Int): User {
         return dao.getUser(id).run { mapper.map(this) }
     }
 }

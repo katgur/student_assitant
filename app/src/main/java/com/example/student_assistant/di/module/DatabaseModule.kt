@@ -16,4 +16,8 @@ object DatabaseModule {
     @Provides
     @AppScope
     fun providesCardDao(database: AppDatabase) = database.getCardDao()
+
+    @Provides
+    @AppScope
+    fun providesProjectDao(database: AppDatabase) = database.getProjectDao()
 }

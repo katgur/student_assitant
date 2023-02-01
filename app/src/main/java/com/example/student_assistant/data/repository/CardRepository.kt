@@ -8,7 +8,11 @@ import javax.inject.Inject
 
 class CardRepository @Inject constructor(private val dao: CardDao, private val mapper: CardMapper) : ICardRepository {
 
-    override fun getAll(): List<Card> {
+    override suspend fun getAll(): List<Card> {
         return dao.getAll().map { mapper.map(it) }
+    }
+
+    override suspend fun addCard(card: Card) {
+        return dao.addCard(mapper.map(card))
     }
 }

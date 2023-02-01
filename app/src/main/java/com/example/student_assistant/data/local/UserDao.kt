@@ -10,8 +10,8 @@ import com.example.student_assistant.data.entity.UserDB
 interface UserDao {
 
     @Query("SELECT * FROM user WHERE id = :id")
-    fun getUser(id: Int): UserDB
+    suspend fun getUser(id: Int): UserDB
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun updateUser(user: UserDB)
+    suspend fun updateUser(user: UserDB)
 }

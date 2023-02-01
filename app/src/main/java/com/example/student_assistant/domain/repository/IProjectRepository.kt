@@ -4,5 +4,7 @@ import com.example.student_assistant.domain.entity.Project
 
 interface IProjectRepository {
 
-    fun getProjectById(id: Int): Project
+    suspend fun getProjectById(id: Int): Project
+
+    suspend fun addProject(project: Project)
 }
