@@ -44,27 +44,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/main_tv_header"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="24dp"
-                    android:text="Projects"
-                    android:textColor="@color/neutral90"
-                    style="@style/TextAppearance.StudentAssistant.LargeTitle.Neutral90" />
-
                 <EditText
                     android:id="@+id/main_et_search"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/main_ib_filter"
-                    app:layout_constraintTop_toBottomOf="@id/main_tv_header"
+                    app:layout_constraintTop_toTopOf="parent"
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="8dp"
-                    android:text="Search projects"
+                    android:hint="@string/search_projects"
                     style="@style/Theme.StudentAssistant.SearchInput" />
 
                 <ImageButton
@@ -102,15 +91,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="5dp"
-                        android:text="All"
-                        android:checked="true"
+                        android:text="@string/all"
                         style="@style/Theme.StudentAssistant.Tab"/>
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="5dp"
-                        android:text="For you"
+                        android:text="@string/recommended"
                         style="@style/Theme.StudentAssistant.Tab" />
 
                 </RadioGroup>

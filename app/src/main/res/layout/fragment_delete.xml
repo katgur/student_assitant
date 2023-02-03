@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Delete project?"
+        android:text="@string/delete_q"
         android:textAppearance="@style/TextAppearance.StudentAssistant.SmallTitle.Neutral90"/>
 
     <LinearLayout
@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Cancel"
+            android:text="@string/cancel"
             android:layout_marginHorizontal="12dp"
             style="@style/Theme.StudentAssistant.TransparentButton" />
 
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Delete"
+            android:text="@string/ok"
             android:layout_marginHorizontal="12dp"
             style="@style/Theme.StudentAssistant.SmallButton" />
 

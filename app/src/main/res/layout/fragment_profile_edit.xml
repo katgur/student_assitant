@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name"
+        android:text="@string/name"
         android:layout_marginVertical="12dp"
         android:textAppearance="@style/TextAppearance.StudentAssistant.SmallTitle.Neutral90"/>
 
@@ -23,7 +23,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Surname"
+        android:text="@string/surname"
         android:layout_marginVertical="12dp"
         android:textAppearance="@style/TextAppearance.StudentAssistant.SmallTitle.Neutral90"/>
 
@@ -35,7 +35,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nickname"
+        android:text="@string/nickname"
         android:layout_marginVertical="12dp"
         android:textAppearance="@style/TextAppearance.StudentAssistant.SmallTitle.Neutral90"/>
 
@@ -47,7 +47,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Description"
+        android:text="@string/description"
         android:layout_marginVertical="12dp"
         android:textAppearance="@style/TextAppearance.StudentAssistant.SmallTitle.Neutral90"/>
 
@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="Preferences"
+            android:text="@string/interests"
             android:layout_marginTop="12dp"
             android:textAppearance="@style/TextAppearance.StudentAssistant.SmallTitle.Neutral90"/>
 
@@ -77,7 +77,7 @@
             app:layout_constraintStart_toStartOf="@id/profile_edit_tv_preferences"
             app:layout_constraintTop_toBottomOf="@id/profile_edit_tv_preferences"
             android:textAppearance="@style/TextAppearance.StudentAssistant.SmallText"
-            android:text="View all" />
+            android:text="@string/view_all" />
 
         <ImageView
             android:id="@+id/profile_edit_iv_view_all"
@@ -127,7 +127,7 @@
             style="@style/Theme.StudentAssistant.TransparentButton"
             android:layout_weight="1"
             android:layout_margin="12dp"
-            android:text="Cancel" />
+            android:text="@string/cancel" />
 
         <Button
             android:layout_width="wrap_content"
@@ -135,7 +135,7 @@
             style="@style/Theme.StudentAssistant.SmallButton"
             android:layout_weight="1"
             android:layout_margin="12dp"
-            android:text="Save" />
+            android:text="@string/save" />
 
     </LinearLayout>
 
