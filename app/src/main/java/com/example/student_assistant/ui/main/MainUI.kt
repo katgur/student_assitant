@@ -26,6 +26,10 @@ class MainUI @Inject constructor(private val fragment: MainFragment,
             val action = MainFragmentDirections.actionMainFragmentToProfileEditFragment()
             navController.navigate(action)
         }
+        adapter.onItemClick = {
+            val action = MainFragmentDirections.actionMainFragmentToProjectDetailFragment(it.first.id)
+            navController.navigate(action)
+        }
     }
 
     fun setupHandlers() {

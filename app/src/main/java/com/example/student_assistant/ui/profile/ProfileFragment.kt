@@ -1,4 +1,4 @@
-package com.example.student_assistant.ui.fragment
+package com.example.student_assistant.ui.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,26 +6,26 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.student_assistant.databinding.FragmentProfileEditBinding
+import com.example.student_assistant.databinding.FragmentProfileBinding
 
-class ProfileEditFragment : Fragment() {
+class ProfileFragment : Fragment() {
 
-    private lateinit var binding : FragmentProfileEditBinding
+    private lateinit var binding : FragmentProfileBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentProfileEditBinding.inflate(inflater, container, false)
+        binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.profileEditIvViewAll.setOnClickListener {
-            val action = ProfileEditFragmentDirections.actionProfileEditFragmentToParametersFragment()
+        binding.btnEdit.setOnClickListener {
+            val action = ProfileFragmentDirections.actionProfileFragmentToProfileEditFragment()
             findNavController().navigate(action)
         }
     }

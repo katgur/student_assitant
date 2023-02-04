@@ -4,14 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.student_assistant.databinding.ItemFilterBinding
-import com.example.student_assistant.domain.entity.Interest
+import com.example.student_assistant.databinding.ItemParameterBinding
 import javax.inject.Inject
 
-class ParameterAdapter @Inject constructor(diffCalculator: ParameterDiffCalculator) : ListAdapter<Interest, ParameterAdapter.ParameterViewHolder>(diffCalculator) {
+class ParameterAdapter @Inject constructor(diffCalculator: ParameterDiffCalculator) : ListAdapter<String, ParameterAdapter.ParameterViewHolder>(diffCalculator) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParameterAdapter.ParameterViewHolder {
-        val binding = ItemFilterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemParameterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ParameterAdapter.ParameterViewHolder(binding)
     }
 
@@ -20,9 +19,9 @@ class ParameterAdapter @Inject constructor(diffCalculator: ParameterDiffCalculat
         return holder.bind(getItem(position))
     }
 
-    class ParameterViewHolder(private val binding: ItemFilterBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Interest) {
-            binding.itemFilterTvItem.text = item.name
+    class ParameterViewHolder(private val binding: ItemParameterBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: String) {
+            binding.itemFilterTvItem.text = item
         }
     }
 }

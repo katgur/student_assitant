@@ -7,8 +7,12 @@ import androidx.lifecycle.viewModelScope
 import com.example.student_assistant.domain.CardWithProjectUseCase
 import com.example.student_assistant.domain.entity.Card
 import com.example.student_assistant.domain.entity.Project
+import com.example.student_assistant.domain.entity.Status
 import com.example.student_assistant.domain.repository.ICardRepository
+import com.example.student_assistant.util.DateUtil
 import kotlinx.coroutines.launch
+import java.util.UUID
+import kotlin.random.Random
 
 class MainViewModel(private val cardWithProjectUseCase: CardWithProjectUseCase) : ViewModel() {
 

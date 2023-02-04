@@ -9,9 +9,13 @@
             </item>
         </layer-list>
     </item>
-    <item>
-        <shape>
-            <solid android:color="@android:color/transparent" />
-        </shape>
+    <item android:state_checked="false">
+        <layer-list>
+            <item android:top="40dp" android:height="6dp" android:width="6dp" android:gravity="center|bottom" >
+                <shape android:shape="oval">
+                    <solid android:color="@android:color/transparent" />
+                </shape>
+            </item>
+        </layer-list>
     </item>
 </selector>

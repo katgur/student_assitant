@@ -4,12 +4,12 @@ import androidx.recyclerview.widget.DiffUtil
 import com.example.student_assistant.domain.entity.Interest
 import javax.inject.Inject
 
-class ParameterDiffCalculator @Inject constructor() : DiffUtil.ItemCallback<Interest>() {
-    override fun areItemsTheSame(oldItem: Interest, newItem: Interest): Boolean {
-        return oldItem.id == newItem.id
+class ParameterDiffCalculator @Inject constructor() : DiffUtil.ItemCallback<String>() {
+    override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
+        return oldItem == newItem
     }
 
-    override fun areContentsTheSame(oldItem: Interest, newItem: Interest): Boolean {
+    override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
         return oldItem == newItem
     }
 }

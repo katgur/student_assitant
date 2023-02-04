@@ -1,4 +1,4 @@
-package com.example.student_assistant.ui.stateholder
+package com.example.student_assistant.ui.profile
 
 import androidx.lifecycle.ViewModel
 

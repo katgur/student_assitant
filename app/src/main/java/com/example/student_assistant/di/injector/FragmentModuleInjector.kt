@@ -1,9 +1,10 @@
 package com.example.student_assistant.di.injector
 
 import com.example.student_assistant.di.scope.FragmentScope
-import com.example.student_assistant.ui.filter.FiltersFragment
+import com.example.student_assistant.ui.filter.FilterFragment
 import com.example.student_assistant.ui.main.MainFragment
-import com.example.student_assistant.ui.parameter.ParametersFragment
+import com.example.student_assistant.ui.parameter.ParameterFragment
+import com.example.student_assistant.ui.project.ProjectDetailFragment
 import com.example.student_assistant.ui.project.ProjectEditFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -17,13 +18,17 @@ abstract class FragmentModuleInjector {
 
     @FragmentScope
     @ContributesAndroidInjector
-    abstract fun contributeParametersFragment(): ParametersFragment
+    abstract fun contributeParametersFragment(): ParameterFragment
 
     @FragmentScope
     @ContributesAndroidInjector
-    abstract fun contributeFiltersFragment(): FiltersFragment
+    abstract fun contributeFiltersFragment(): FilterFragment
 
     @FragmentScope
     @ContributesAndroidInjector
     abstract fun contributeProjectEditFragment(): ProjectEditFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector
+    abstract fun contributeProjectDetailFragment(): ProjectDetailFragment
 }

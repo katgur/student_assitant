@@ -4,7 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingHorizontal="24dp"
-    android:paddingVertical="16dp">
+    android:paddingVertical="16dp"
+    android:background="@drawable/bg_item"
+    android:clickable="true"
+    android:focusable="true">
 
     <TextView
         android:id="@+id/i_card_tv_title"
@@ -18,12 +21,15 @@
 
     <TextView
         android:id="@+id/i_card_tv_text"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.StudentAssistant.Text.Neutral90"
         android:textColor="@color/neutral50"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/i_card_tv_title" />
+        android:maxLines="2"
+        android:ellipsize="end"
+        app:layout_constraintTop_toBottomOf="@id/i_card_tv_title"
+        app:layout_constraintStart_toStartOf="@id/i_card_tv_title"
+        app:layout_constraintEnd_toStartOf="@id/i_card_tv_time"/>
 
     <TextView
         android:id="@+id/i_card_tv_time"

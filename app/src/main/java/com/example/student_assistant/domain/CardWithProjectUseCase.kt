@@ -17,4 +17,9 @@ class CardWithProjectUseCase @Inject constructor(
             return@map Pair(it, project)
         }
     }
+
+    suspend fun add(project: Project, card: Card) {
+        projectRepository.addProject(project)
+        cardRepository.addCard(card)
+    }
 }
