@@ -20,6 +20,17 @@ private val repository1: IProjectRepository) : ViewModel() {
     private val _project = MutableLiveData<Project>()
     val project: LiveData<Project> = _project
 
+    fun load(id: String?) {
+        if (id == null) {
+            return
+        }
+        viewModelScope.launch {
+            val card = repository.getCardById(id)
+            val project = repository1.getProjectById(card.projectId)
+            _project.postValue(project)
+        }
+    }
+
     fun addProject() {
         viewModelScope.launch {
             val project = Project(UUID.randomUUID().toString(),

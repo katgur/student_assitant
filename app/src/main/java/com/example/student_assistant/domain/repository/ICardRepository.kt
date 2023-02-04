@@ -7,4 +7,6 @@ interface ICardRepository {
     suspend fun getAll(): List<Card>
 
     suspend fun addCard(card: Card)
+
+    suspend fun getCardById(id: String): Card
 }
