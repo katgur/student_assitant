@@ -1,109 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.main.MainFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ui.main.MainFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/neutral00">
 
-        <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:layout_collapseMode="pin">
-
-            <ImageView
-                android:id="@+id/main_iv_avatar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_avatar" />
-
-            <ImageView
-                android:id="@+id/main_iv_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginEnd="24dp"
-                android:src="@drawable/ic_settings" />
-
-        </androidx.appcompat.widget.Toolbar>
-
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            android:paddingHorizontal="24dp">
+            android:paddingHorizontal="24dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <ImageView
+                    android:id="@+id/main_iv_avatar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_avatar"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/main_iv_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="24dp"
+                    android:src="@drawable/ic_settings"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/main_iv_avatar"
+                    app:layout_constraintBottom_toBottomOf="@id/main_iv_avatar"/>
+
                 <EditText
                     android:id="@+id/main_et_search"
+                    style="@style/Theme.StudentAssistant.SearchInput"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/main_ib_filter"
-                    app:layout_constraintTop_toTopOf="parent"
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="8dp"
                     android:hint="@string/search_projects"
-                    style="@style/Theme.StudentAssistant.SearchInput" />
+                    app:layout_constraintEnd_toStartOf="@id/main_ib_filter"
+                    app:layout_constraintStart_toStartOf="@id/main_iv_avatar"
+                    app:layout_constraintTop_toBottomOf="@id/main_iv_avatar" />
 
                 <ImageButton
                     android:id="@+id/main_ib_filter"
+                    style="@style/Theme.StudentAssistant.ImageButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="@id/main_et_search"
-                    app:layout_constraintBottom_toBottomOf="@id/main_et_search"
-                    app:layout_constraintStart_toEndOf="@id/main_et_search"
-                    app:layout_constraintEnd_toStartOf="@id/main_ib_plus"
                     android:layout_marginEnd="8dp"
                     android:src="@drawable/ic_filter"
-                    style="@style/Theme.StudentAssistant.ImageButton" />
+                    app:layout_constraintBottom_toBottomOf="@id/main_et_search"
+                    app:layout_constraintEnd_toStartOf="@id/main_ib_plus"
+                    app:layout_constraintStart_toEndOf="@id/main_et_search"
+                    app:layout_constraintTop_toTopOf="@id/main_et_search" />
 
                 <ImageButton
                     android:id="@+id/main_ib_plus"
+                    style="@style/Theme.StudentAssistant.ImageButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="@id/main_ib_filter"
-                    app:layout_constraintBottom_toBottomOf="@id/main_ib_filter"
-                    app:layout_constraintStart_toEndOf="@id/main_ib_filter"
-                    app:layout_constraintEnd_toEndOf="parent"
                     android:src="@drawable/ic_plus"
-                    style="@style/Theme.StudentAssistant.ImageButton" />
+                    app:layout_constraintBottom_toBottomOf="@id/main_ib_filter"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/main_ib_filter"
+                    app:layout_constraintTop_toTopOf="@id/main_ib_filter" />
 
                 <RadioGroup
                     android:id="@+id/main_rg_tabs"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/main_et_search"
+                    android:orientation="horizontal"
                     android:layout_marginTop="12dp"
-                    android:orientation="horizontal">
+                    app:layout_constraintTop_toBottomOf="@id/main_et_search">
 
                     <RadioButton
+                        style="@style/Theme.StudentAssistant.Tab"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="5dp"
-                        android:text="@string/all"
-                        style="@style/Theme.StudentAssistant.Tab"/>
+                        android:text="@string/all" />
 
                     <RadioButton
+                        style="@style/Theme.StudentAssistant.Tab"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="5dp"
-                        android:text="@string/recommended"
-                        style="@style/Theme.StudentAssistant.Tab" />
+                        android:text="@string/recommended" />
 
                 </RadioGroup>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="none" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
