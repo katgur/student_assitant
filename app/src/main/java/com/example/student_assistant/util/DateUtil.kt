@@ -34,4 +34,12 @@ object DateUtil {
     fun stringToLong(string: String): Long {
         return formatter.parse(string)?.time ?: throw IllegalStateException("Wrong date format")
     }
+
+    fun maxDateString(): String {
+        return longToDateString(Long.MAX_VALUE)
+    }
+
+    fun minDateString(): String {
+        return longToDateString(0L)
+    }
 }

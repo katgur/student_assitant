@@ -23,10 +23,10 @@ class AuthFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.btnLogin.setOnClickListener {
-            val action = AuthFragmentDirections.actionAuthFragmentToMainFragment()
-            findNavController().navigate(action)
-        }
+//
+//        binding.btnLogin.setOnClickListener {
+//            val action = AuthFragmentDirections.actionAuthFragmentToMainFragment()
+//            findNavController().navigate(action)
+//        }
     }
 }

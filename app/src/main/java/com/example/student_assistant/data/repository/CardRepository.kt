@@ -19,4 +19,8 @@ class CardRepository @Inject constructor(private val dao: CardDao, private val m
     override suspend fun getCardById(id: String): Card {
         return mapper.map(dao.getCardById(id))
     }
+
+    override suspend fun filterByNameAndDescription(name: String, description: String): List<Card> {
+        return dao.getCardsByStringFilter(name, description).map { mapper.map(it.key) }
+    }
 }

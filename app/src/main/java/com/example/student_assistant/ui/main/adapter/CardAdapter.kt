@@ -1,13 +1,9 @@
 package com.example.student_assistant.ui.main.adapter
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.MotionEvent
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.student_assistant.R
 import com.example.student_assistant.domain.entity.Card
 import javax.inject.Inject
 import com.example.student_assistant.databinding.ItemCardBinding

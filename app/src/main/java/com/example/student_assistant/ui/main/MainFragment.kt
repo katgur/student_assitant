@@ -37,6 +37,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         ui.apply {
             navigate()
+            setupAdapter()
             setupHandlers()
             observeViewModel()
         }
