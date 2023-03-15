@@ -6,6 +6,7 @@ import com.example.student_assistant.di.factory.ViewModelFactory
 import com.example.student_assistant.di.injector.ActivityModuleInjector
 import com.example.student_assistant.di.injector.FragmentModuleInjector
 import com.example.student_assistant.di.module.DatabaseModule
+import com.example.student_assistant.di.module.NetworkModule
 import com.example.student_assistant.di.module.RepositoryModule
 import com.example.student_assistant.di.scope.AppScope
 import dagger.BindsInstance
@@ -22,7 +23,8 @@ import dagger.android.support.AndroidSupportInjectionModule
         ActivityModuleInjector::class,
         FragmentModuleInjector::class,
         RepositoryModule::class,
-        DatabaseModule::class
+        DatabaseModule::class,
+        NetworkModule::class,
     ]
 )
 interface AppComponent {

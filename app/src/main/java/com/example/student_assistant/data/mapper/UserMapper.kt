@@ -4,8 +4,9 @@ import com.example.student_assistant.data.local.entity.InterestDB
 import com.example.student_assistant.data.local.entity.UserDB
 import com.example.student_assistant.domain.entity.Interest
 import com.example.student_assistant.domain.entity.User
+import javax.inject.Inject
 
-class UserMapper {
+class UserMapper @Inject constructor() {
 
     fun map(dto: UserDB): User {
         return User(

@@ -20,4 +20,8 @@ object DatabaseModule {
     @Provides
     @AppScope
     fun providesProjectDao(database: AppDatabase) = database.getProjectDao()
+
+    @Provides
+    @AppScope
+    fun providesUserDao(database: AppDatabase) = database.getUserDao()
 }

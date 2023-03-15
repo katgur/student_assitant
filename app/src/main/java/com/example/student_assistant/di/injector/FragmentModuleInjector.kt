@@ -2,6 +2,8 @@ package com.example.student_assistant.di.injector
 
 import com.example.student_assistant.di.scope.FragmentScope
 import com.example.student_assistant.ui.filter.FilterFragment
+import com.example.student_assistant.ui.fragment.AuthFragment
+import com.example.student_assistant.ui.fragment.RegistrationFragment
 import com.example.student_assistant.ui.main.MainFragment
 import com.example.student_assistant.ui.parameter.ParameterFragment
 import com.example.student_assistant.ui.project.ProjectDetailFragment
@@ -31,4 +33,12 @@ abstract class FragmentModuleInjector {
     @FragmentScope
     @ContributesAndroidInjector
     abstract fun contributeProjectDetailFragment(): ProjectDetailFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector
+    abstract fun contributeAuthFragment(): AuthFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector
+    abstract fun contributeRegisterFragment(): RegistrationFragment
 }

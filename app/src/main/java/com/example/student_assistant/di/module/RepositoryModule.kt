@@ -21,4 +21,8 @@ abstract class RepositoryModule {
     @Binds
     @AppScope
     abstract fun bindsProjectRepository(impl: ProjectRepository): IProjectRepository
+
+    @Binds
+    @AppScope
+    abstract fun bindsUserRepository(impl: UserRepository): IUserRepository
 }

@@ -31,4 +31,5 @@
     <string name="surname">Фамилия</string>
     <string name="nickname">Никнейм</string>
     <string name="save">Сохранить</string>
+    <string name="register">Регистрация</string>
 </resources>
