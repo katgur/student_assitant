@@ -3,10 +3,11 @@ package com.example.student_assistant.di.factory
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.student_assistant.domain.CardWithProjectUseCase
-import com.example.student_assistant.domain.RegisterUserUseCase
 import com.example.student_assistant.domain.repository.ICardRepository
 import com.example.student_assistant.domain.repository.IProjectRepository
+import com.example.student_assistant.domain.repository.IUserRepository
 import com.example.student_assistant.ui.filter.FilterViewModel
+import com.example.student_assistant.ui.fragment.AuthViewModel
 import com.example.student_assistant.ui.fragment.RegistrationViewModel
 import com.example.student_assistant.ui.main.MainViewModel
 import com.example.student_assistant.ui.profile.ProfileViewModel
@@ -16,8 +17,8 @@ import javax.inject.Inject
 class ViewModelFactory @Inject constructor(
     private val cardRepository: ICardRepository,
     private val projectRepository: IProjectRepository,
+    private val userRepository: IUserRepository,
     private val cardWithProjectUseCase: CardWithProjectUseCase,
-    private val registerUserUseCase: RegisterUserUseCase,
     ) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
@@ -31,7 +32,9 @@ class ViewModelFactory @Inject constructor(
         else if (modelClass.isAssignableFrom(FilterViewModel::class.java))
             FilterViewModel() as T
         else if (modelClass.isAssignableFrom(RegistrationViewModel::class.java))
-            RegistrationViewModel(registerUserUseCase) as T
+            RegistrationViewModel(userRepository) as T
+        else if (modelClass.isAssignableFrom(AuthViewModel::class.java))
+            AuthViewModel(userRepository) as T
         else
             throw IllegalArgumentException("ViewModel $modelClass Not Found")
     }

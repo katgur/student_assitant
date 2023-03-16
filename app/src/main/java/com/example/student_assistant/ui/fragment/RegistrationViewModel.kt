@@ -4,15 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.student_assistant.domain.RegisterUserUseCase
 import com.example.student_assistant.domain.entity.RegistrationInfo
 import com.example.student_assistant.domain.entity.VerificationInfo
+import com.example.student_assistant.domain.repository.IUserRepository
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class RegistrationViewModel @Inject constructor(
-    private val registerUserUseCase: RegisterUserUseCase) : ViewModel() {
+    private val repository: IUserRepository) : ViewModel() {
 
     private val _user = MutableLiveData<RegistrationInfo>()
     private val _code = MutableLiveData<String>()
@@ -35,14 +35,13 @@ class RegistrationViewModel @Inject constructor(
         val info = RegistrationInfo(email, name, surname, password)
         _user.value = info
         viewModelScope.launch(exceptionHandler) {
-            val result = registerUserUseCase.register(info)
+            val result = repository.register(info)
             _isRegistered.value = result.isSuccess
             if (result.isFailure) {
                 _message.postValue(result.exceptionOrNull()?.message)
             } else {
                 _message.postValue("Verification code is sent")
             }
-//            _isRegistered.value = true
         }
     }
 
@@ -50,14 +49,13 @@ class RegistrationViewModel @Inject constructor(
         if (_isRegistered.value == true) {
             _code.value = code
             val info = VerificationInfo(_user.value!!.email, code)
-//            _isVerified.value = true
             viewModelScope.launch(exceptionHandler) {
-                val result = registerUserUseCase.verify(info)
+                val result = repository.verify(info)
                 if (result.isFailure) {
                     _message.postValue(result.exceptionOrNull()?.message)
                 } else {
                     _isVerified.postValue(true)
-                    _message.postValue((result.getOrNull()))
+                    _message.postValue("Verification is successful")
                 }
             }
         }

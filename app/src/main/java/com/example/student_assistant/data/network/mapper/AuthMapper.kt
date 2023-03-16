@@ -1,9 +1,10 @@
 package com.example.student_assistant.data.network.mapper
 
+import com.example.student_assistant.data.network.entity.LoginRequest
+import com.example.student_assistant.data.network.entity.MessageResponse
 import com.example.student_assistant.data.network.entity.RegistrationRequest
-import com.example.student_assistant.data.network.entity.RegistrationResponse
 import com.example.student_assistant.data.network.entity.VerificationRequest
-import com.example.student_assistant.data.network.entity.VerificationResponse
+import com.example.student_assistant.domain.entity.LoginInfo
 import com.example.student_assistant.domain.entity.RegistrationInfo
 import com.example.student_assistant.domain.entity.VerificationInfo
 import javax.inject.Inject
@@ -14,7 +15,7 @@ class AuthMapper @Inject constructor() {
         return RegistrationRequest(info.email, info.name, info.surname, info.password)
     }
 
-    fun map(response: RegistrationResponse): String {
+    fun map(response: MessageResponse): String {
         return response.detail
     }
 
@@ -22,7 +23,7 @@ class AuthMapper @Inject constructor() {
         return VerificationRequest(info.email, info.code)
     }
 
-    fun map(response: VerificationResponse): String {
-        return response.detail
+    fun map(info: LoginInfo): LoginRequest {
+        return LoginRequest(info.email, info.password)
     }
 }

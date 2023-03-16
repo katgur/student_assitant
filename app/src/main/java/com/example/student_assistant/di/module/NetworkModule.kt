@@ -19,7 +19,7 @@ class NetworkModule {
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(ErrorConverterCallAdapterFactory())
-            .baseUrl("http://84.201.175.11:1443")
+            .baseUrl(BuildConfig.BASE_URL)
             .build()
             .create(AuthApi::class.java)
     }

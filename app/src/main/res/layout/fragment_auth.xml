@@ -19,6 +19,7 @@
         android:textColor="@color/neutral90" />
 
     <EditText
+        android:id="@+id/auth_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/email"
@@ -26,6 +27,7 @@
         style="@style/Theme.StudentAssistant.EditText" />
 
     <EditText
+        android:id="@+id/auth_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/password"
