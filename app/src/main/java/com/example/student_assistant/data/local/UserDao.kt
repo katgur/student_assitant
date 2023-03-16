@@ -9,9 +9,9 @@ import com.example.student_assistant.data.local.entity.UserDB
 @Dao
 interface UserDao {
 
-    @Query("SELECT * FROM user WHERE id = :id")
-    suspend fun getUser(id: Int): UserDB
+    @Query("SELECT * FROM user")
+    suspend fun getUser(): List<UserDB>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun updateUser(user: UserDB)
+    suspend fun setUser(user: UserDB)
 }

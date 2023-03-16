@@ -1,14 +1,16 @@
 package com.example.student_assistant.data.local.entity
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "user")
 data class UserDB(
-    @PrimaryKey val id: String,
-    val nickname: String,
-    val name: String,
-    val bio: String,
+    @PrimaryKey
     val email: String,
-    val interests: List<InterestDB>
+    @ColumnInfo(name="is_student")
+    val isStudent: Boolean?,
+    val name: String?,
+    val bio: String?,
+    val contacts: String?,
 )

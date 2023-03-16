@@ -18,53 +18,22 @@
             android:id="@+id/main_ctl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="24dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/main_iv_avatar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_avatar"
-                    android:layout_marginTop="12dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/main_iv_edit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginEnd="24dp"
-                    android:src="@drawable/ic_settings"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/main_iv_avatar"
-                    app:layout_constraintBottom_toBottomOf="@id/main_iv_avatar"/>
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp">
 
                 <SearchView
                     android:id="@+id/main_et_search"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    app:layout_constraintEnd_toStartOf="@id/main_ib_filter"
-                    app:layout_constraintStart_toStartOf="@id/main_iv_avatar"
-                    app:layout_constraintTop_toBottomOf="@id/main_iv_avatar" />
-
-                <ImageButton
-                    android:id="@+id/main_ib_filter"
-                    style="@style/Theme.StudentAssistant.ImageButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:src="@drawable/ic_filter"
-                    app:layout_constraintBottom_toBottomOf="@id/main_et_search"
                     app:layout_constraintEnd_toStartOf="@id/main_ib_plus"
-                    app:layout_constraintStart_toEndOf="@id/main_et_search"
-                    app:layout_constraintTop_toTopOf="@id/main_et_search" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
 
                 <ImageButton
                     android:id="@+id/main_ib_plus"
@@ -72,10 +41,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_plus"
-                    app:layout_constraintBottom_toBottomOf="@id/main_ib_filter"
+                    app:layout_constraintBottom_toBottomOf="@id/main_et_search"
+                    app:layout_constraintStart_toEndOf="@id/main_et_search"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/main_ib_filter"
-                    app:layout_constraintTop_toTopOf="@id/main_ib_filter" />
+                    app:layout_constraintTop_toTopOf="@id/main_et_search" />
 
                 <RadioGroup
                     android:id="@+id/main_rg_tabs"
@@ -103,10 +72,27 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.appcompat.widget.Toolbar
+            <Toolbar
+                android:id="@+id/main_tb"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:elevation="-1dp" />
+                android:layout_height="?android:attr/actionBarSize">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:textAppearance="@style/TextAppearance.StudentAssistant.Title.Neutral90"
+                    android:text="Проекты" />
+
+                <ImageView
+                    android:id="@+id/main_iv_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_more"
+                    android:layout_marginEnd="24dp"
+                    android:layout_gravity="end" />
+
+            </Toolbar>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>

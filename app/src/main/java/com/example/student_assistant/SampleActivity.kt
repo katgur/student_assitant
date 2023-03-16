@@ -5,8 +5,12 @@ import android.app.SearchManager
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
 import com.example.student_assistant.ui.main.MainUI
 import com.example.student_assistant.util.EnumUtil
 import dagger.android.AndroidInjection

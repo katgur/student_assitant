@@ -2,6 +2,7 @@ package com.example.student_assistant.di.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.student_assistant.data.local.UserDao
 import com.example.student_assistant.domain.CardWithProjectUseCase
 import com.example.student_assistant.domain.repository.ICardRepository
 import com.example.student_assistant.domain.repository.IProjectRepository
@@ -26,7 +27,7 @@ class ViewModelFactory @Inject constructor(
         return if (modelClass.isAssignableFrom(MainViewModel::class.java))
             MainViewModel(cardWithProjectUseCase) as T
         else if (modelClass.isAssignableFrom(ProfileViewModel::class.java))
-            ProfileViewModel() as T
+            ProfileViewModel(userRepository) as T
         else if (modelClass.isAssignableFrom(ProjectViewModel::class.java))
             ProjectViewModel(cardRepository, projectRepository) as T
         else if (modelClass.isAssignableFrom(FilterViewModel::class.java))

@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:gravity="center"
     tools:context=".ui.fragment.AuthFragment">
 
     <TextView
@@ -13,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="@string/login"
         android:layout_gravity="start"
-        android:layout_marginBottom="30dp"
+        android:layout_marginTop="128dp"
         android:layout_marginStart="24dp"
         android:textAppearance="@style/TextAppearance.StudentAssistant.LargeTitle.Neutral90"
         android:textColor="@color/neutral90" />
@@ -22,6 +21,7 @@
         android:id="@+id/auth_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
         android:hint="@string/email"
         android:layout_marginHorizontal="24dp"
         style="@style/Theme.StudentAssistant.EditText" />
@@ -31,6 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/password"
+        android:inputType="textPassword"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="22dp"
         style="@style/Theme.StudentAssistant.EditText" />

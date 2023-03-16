@@ -3,11 +3,14 @@ package com.example.student_assistant.ui.main
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.student_assistant.App
+import com.example.student_assistant.R
 import com.example.student_assistant.databinding.FragmentMainBinding
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject

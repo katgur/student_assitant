@@ -6,6 +6,7 @@ import com.example.student_assistant.ui.fragment.AuthFragment
 import com.example.student_assistant.ui.fragment.RegistrationFragment
 import com.example.student_assistant.ui.main.MainFragment
 import com.example.student_assistant.ui.parameter.ParameterFragment
+import com.example.student_assistant.ui.profile.ProfileFragment
 import com.example.student_assistant.ui.project.ProjectDetailFragment
 import com.example.student_assistant.ui.project.ProjectEditFragment
 import dagger.Module
@@ -41,4 +42,8 @@ abstract class FragmentModuleInjector {
     @FragmentScope
     @ContributesAndroidInjector
     abstract fun contributeRegisterFragment(): RegistrationFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector
+    abstract fun contributeProfileFragment(): ProfileFragment
 }

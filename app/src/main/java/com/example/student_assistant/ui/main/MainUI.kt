@@ -3,11 +3,14 @@ package com.example.student_assistant.ui.main
 import android.animation.ValueAnimator
 import android.app.SearchManager
 import android.content.Context
+import android.view.MenuInflater
 import android.view.View
 import android.view.animation.DecelerateInterpolator
+import android.widget.PopupMenu
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.student_assistant.R
 import com.example.student_assistant.ui.main.adapter.CardAdapter
 import com.example.student_assistant.util.EnumUtil
 import com.google.android.material.appbar.AppBarLayout
@@ -22,22 +25,47 @@ class MainUI @Inject constructor(
 
     fun navigate() {
         val navController = fragment.findNavController()
-        fragment.binding.mainIbFilter.setOnClickListener {
-            val action = MainFragmentDirections.actionMainFragmentToFiltersFragment()
-            navController.navigate(action)
+//        fragment.binding.mainIbFilter.setOnClickListener {
+//            val action = MainFragmentDirections.actionMainFragmentToFiltersFragment()
+//            navController.navigate(action)
+//        }
+        fragment.binding.apply {
+            mainIbPlus.setOnClickListener {
+                val action = MainFragmentDirections.actionMainFragmentToProjectEditFragment()
+                navController.navigate(action)
+            }
+            mainIvMore.setOnClickListener {
+                val popup = PopupMenu(fragment.requireContext(), it)
+                val inflater: MenuInflater = popup.menuInflater
+                inflater.inflate(R.menu.main_menu, popup.menu)
+                popup.setOnMenuItemClickListener { item ->
+                    when (item.itemId) {
+                        R.id.mi_profile -> {
+                            val action = MainFragmentDirections.actionMainFragmentToProfileFragment()
+                            navController.navigate(action)
+                            return@setOnMenuItemClickListener true
+                        }
+                        R.id.mi_settings -> {
+                            val action = MainFragmentDirections.actionMainFragmentToProfileEditFragment()
+                            navController.navigate(action)
+                            return@setOnMenuItemClickListener true
+                        }
+                        else -> {
+                            return@setOnMenuItemClickListener true
+                        }
+                    }
+                }
+                popup.show()
+            }
         }
-        fragment.binding.mainIbPlus.setOnClickListener {
-            val action = MainFragmentDirections.actionMainFragmentToProjectEditFragment()
-            navController.navigate(action)
-        }
-        fragment.binding.mainIvAvatar.setOnClickListener {
-            val action = MainFragmentDirections.actionMainFragmentToProfileFragment()
-            navController.navigate(action)
-        }
-        fragment.binding.mainIvEdit.setOnClickListener {
-            val action = MainFragmentDirections.actionMainFragmentToProfileEditFragment()
-            navController.navigate(action)
-        }
+//        fragment.binding.mainIvAvatar.setOnClickListener {
+//            val action = MainFragmentDirections.actionMainFragmentToProfileFragment()
+//            navController.navigate(action)
+//        }
+//        fragment.binding.mainIvEdit.setOnClickListener {
+//            val action = MainFragmentDirections.actionMainFragmentToProfileEditFragment()
+//            navController.navigate(action)
+//        }
         adapter.onItemClick = {
             val action =
                 MainFragmentDirections.actionMainFragmentToProjectDetailFragment(it.first.id)
@@ -57,8 +85,8 @@ class MainUI @Inject constructor(
             val searchManager = fragment.requireContext().getSystemService(Context.SEARCH_SERVICE) as SearchManager
             mainEtSearch.setSearchableInfo(searchManager.getSearchableInfo(fragment.requireActivity().componentName))
             mainEtSearch.setOnSearchClickListener {
-                mainIvEdit.visibility = View.GONE
-                mainIvAvatar.visibility = View.GONE
+//                mainIvEdit.visibility = View.GONE
+//                mainIvAvatar.visibility = View.GONE
                 mainRgTabs.visibility = View.GONE
                 mainIbPlus.visibility = View.GONE
                 mainRgTabs.visibility = View.GONE

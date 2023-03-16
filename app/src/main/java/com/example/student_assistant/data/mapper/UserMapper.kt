@@ -1,32 +1,38 @@
 package com.example.student_assistant.data.mapper
 
-import com.example.student_assistant.data.local.entity.InterestDB
 import com.example.student_assistant.data.local.entity.UserDB
-import com.example.student_assistant.domain.entity.Interest
-import com.example.student_assistant.domain.entity.User
+import com.example.student_assistant.domain.entity.LoginInfo
+import com.example.student_assistant.domain.entity.UserInfo
 import javax.inject.Inject
 
 class UserMapper @Inject constructor() {
+    fun mapToUserInfo(dto: UserDB): UserInfo? {
+        if (dto.isStudent == null || dto.bio == null || dto.contacts == null || dto.name == null) {
+            return null
+        }
+        return UserInfo(dto.isStudent, dto.name, dto.bio, dto.contacts)
+    }
+    fun mapToLoginInfo(dto: UserDB): LoginInfo {
+        return LoginInfo(dto.email, "")
+    }
 
-    fun map(dto: UserDB): User {
-        return User(
-            dto.id,
-            dto.nickname,
-            dto.name,
-            dto.bio,
-            dto.email,
-            dto.interests.map { Interest(it.id, it.name) }
+    fun mapFromLoginInfo(info: LoginInfo): UserDB {
+        return UserDB(
+            info.email,
+            null,
+            null,
+            null,
+            null,
         )
     }
 
-    fun map(entity: User): UserDB {
+    fun mapFromUserInfo(info: UserInfo, email: String): UserDB {
         return UserDB(
-            entity.id,
-            entity.nickname,
-            entity.name,
-            entity.bio,
-            entity.email,
-            entity.interests.map { InterestDB(it.id, it.name) }
+            email,
+            info.isStudent,
+            info.name,
+            info.bio,
+            info.contacts,
         )
     }
 }
