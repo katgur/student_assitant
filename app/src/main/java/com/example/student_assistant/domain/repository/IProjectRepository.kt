@@ -1,10 +1,20 @@
 package com.example.student_assistant.domain.repository
 
+import com.example.student_assistant.domain.entity.Card
+import com.example.student_assistant.domain.entity.CreateProjectInfo
 import com.example.student_assistant.domain.entity.Project
 
 interface IProjectRepository {
 
-    suspend fun getProjectById(id: String): Project
+    suspend fun addProject(info: CreateProjectInfo): Result<Int>
 
-    suspend fun addProject(project: Project)
+    suspend fun updateProject(project: Project): Result<Unit>
+
+    suspend fun deleteProject(id: Int): Result<Unit>
+
+    suspend fun getProject(id: Int): Result<Project>
+
+    suspend fun searchProject(substring: String): Result<List<Card>>
+
+    suspend fun getProjects(): Result<List<Card>>
 }

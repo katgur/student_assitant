@@ -1,17 +1,19 @@
 package com.example.student_assistant.ui.main.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.student_assistant.domain.entity.Card
 import javax.inject.Inject
 import com.example.student_assistant.databinding.ItemCardBinding
 import com.example.student_assistant.domain.entity.Project
 
-class CardAdapter @Inject constructor(diffCalculator: CardDiffCalculator) : ListAdapter<Pair<Card, Project>, CardAdapter.CardViewHolder>(diffCalculator) {
+class CardAdapter @Inject constructor(diffCalculator: CardDiffCalculator) : ListAdapter<Card, CardAdapter.CardViewHolder>(diffCalculator) {
 
-    var onItemClick: ((Pair<Card, Project>) -> Unit)? = null
+    var onItemClick: ((Card) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
         val binding = ItemCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -22,13 +24,15 @@ class CardAdapter @Inject constructor(diffCalculator: CardDiffCalculator) : List
         holder.bind(getItem(position), onItemClick)
     }
 
-    class CardViewHolder(private val binding: ItemCardBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Pair<Card, Project>, onItemClick: ((Pair<Card, Project>) -> Unit)?) {
-            binding.iCardTvTitle.text = item.second.name
-            binding.iCardTvText.text = item.second.description
-            binding.iCardTvTime.text = "До ${item.second.dueDate}"
-            binding.root.setOnClickListener {
-                onItemClick?.invoke(item)
+    class CardViewHolder(private val binding: ItemCardBinding) : ViewHolder(binding.root) {
+        fun bind(item: Card, onItemClick: ((Card) -> Unit)?) {
+            binding.apply {
+                iCardTvTitle.text = item.title
+                iCardTvText.text = item.description
+                iCardTvTime.text = item.status.replace(", ", "\n")
+                root.setOnClickListener {
+                    onItemClick?.invoke(item)
+                }
             }
         }
     }

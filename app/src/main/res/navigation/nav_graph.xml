@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_projectEditFragment_to_parametersFragment"
             app:destination="@id/parametersFragment" />
+        <argument
+            android:name="id"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/parametersFragment"
@@ -71,11 +74,14 @@
         tools:layout="@layout/fragment_details" >
         <argument
             android:name="id"
-            app:argType="string" />
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_projectDetailFragment_to_projectEditFragment"
+            app:destination="@id/projectEditFragment" />
     </fragment>
     <fragment
         android:id="@+id/authFragment"
-        android:name="com.example.student_assistant.ui.fragment.AuthFragment"
+        android:name="com.example.student_assistant.ui.auth.AuthFragment"
         android:label="fragment_auth"
         tools:layout="@layout/fragment_auth" >
         <action
@@ -87,7 +93,7 @@
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
-        android:name="com.example.student_assistant.ui.fragment.RegistrationFragment"
+        android:name="com.example.student_assistant.ui.auth.RegistrationFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
 </navigation>

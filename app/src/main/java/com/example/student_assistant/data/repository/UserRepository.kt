@@ -2,7 +2,7 @@ package com.example.student_assistant.data.repository
 
 import android.util.Log
 import com.example.student_assistant.data.local.UserDao
-import com.example.student_assistant.data.mapper.UserMapper
+import com.example.student_assistant.data.local.mapper.UserMapper
 import com.example.student_assistant.data.network.AuthApi
 import com.example.student_assistant.data.network.mapper.AuthMapper
 import com.example.student_assistant.domain.entity.LoginInfo
@@ -45,6 +45,10 @@ class UserRepository @Inject constructor(
 
     override suspend fun login(info: LoginInfo): Result<Unit> {
         return try {
+            val cachedUser = dao.getUser()
+            if (cachedUser.isNotEmpty()) {
+                return Result.success(Unit)
+            }
             api.login(apiMapper.map(info))
             dao.setUser(mapper.mapFromLoginInfo(info))
             Result.success(Unit)
@@ -72,5 +76,28 @@ class UserRepository @Inject constructor(
             exc.printStackTrace()
             Result.failure(IllegalStateException("Something went wrong"))
         }
+    }
+
+    override suspend fun updateUser(name: String, surname: String, bio: String): Result<Unit> {
+        return try {
+            val cachedUser = dao.getUser()[0]
+            val cachedUserInfo = mapper.mapToUserInfo(cachedUser)
+            if (cachedUserInfo != null) {
+                val info = UserInfo(cachedUserInfo.isStudent, "$name $surname", bio, cachedUserInfo.contacts)
+                val loginInfo = mapper.mapToLoginInfo(cachedUser)
+                api.updateUser(loginInfo.email, apiMapper.map(info))
+                dao.setUser(mapper.mapFromUserInfo(info, loginInfo.email))
+            }
+            Result.success(Unit)
+        } catch (exc: IllegalStateException) {
+            Result.failure(exc)
+        } catch (exc: Exception) {
+            exc.printStackTrace()
+            Result.failure(IllegalStateException("Something went wrong"))
+        }
+    }
+
+    override suspend fun logout() {
+        dao.deleteUser()
     }
 }

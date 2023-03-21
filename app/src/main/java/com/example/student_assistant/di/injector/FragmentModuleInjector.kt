@@ -2,10 +2,11 @@ package com.example.student_assistant.di.injector
 
 import com.example.student_assistant.di.scope.FragmentScope
 import com.example.student_assistant.ui.filter.FilterFragment
-import com.example.student_assistant.ui.fragment.AuthFragment
-import com.example.student_assistant.ui.fragment.RegistrationFragment
+import com.example.student_assistant.ui.auth.AuthFragment
+import com.example.student_assistant.ui.auth.RegistrationFragment
 import com.example.student_assistant.ui.main.MainFragment
 import com.example.student_assistant.ui.parameter.ParameterFragment
+import com.example.student_assistant.ui.profile.ProfileEditFragment
 import com.example.student_assistant.ui.profile.ProfileFragment
 import com.example.student_assistant.ui.project.ProjectDetailFragment
 import com.example.student_assistant.ui.project.ProjectEditFragment
@@ -46,4 +47,8 @@ abstract class FragmentModuleInjector {
     @FragmentScope
     @ContributesAndroidInjector
     abstract fun contributeProfileFragment(): ProfileFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector
+    abstract fun contributeProfileEditFragment(): ProfileEditFragment
 }

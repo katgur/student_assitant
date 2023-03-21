@@ -2,6 +2,7 @@ package com.example.student_assistant.ui.project
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,10 +43,21 @@ class ProjectEditFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d("kek", "project edit on view cre")
 
+
+        val id = arguments?.getInt("id")
         ui.apply {
             navigate()
             setupHandlers()
+            if (id != null) {
+                setupViewModel(id)
+            }
         }
+    }
+
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
     }
 }

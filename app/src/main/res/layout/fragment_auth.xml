@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    tools:context=".ui.fragment.AuthFragment">
+    tools:context=".ui.auth.AuthFragment">
 
     <TextView
         android:id="@+id/auth_tv_header"

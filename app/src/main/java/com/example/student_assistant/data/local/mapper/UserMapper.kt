@@ -1,4 +1,4 @@
-package com.example.student_assistant.data.mapper
+package com.example.student_assistant.data.local.mapper
 
 import com.example.student_assistant.data.local.entity.UserDB
 import com.example.student_assistant.domain.entity.LoginInfo

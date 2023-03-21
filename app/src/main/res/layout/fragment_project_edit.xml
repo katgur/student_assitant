@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -28,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Edit project"
+                android:text="Редактирование проекта"
                 android:textAppearance="@style/TextAppearance.StudentAssistant.Title.Neutral90" />
 
         </LinearLayout>
@@ -38,162 +37,132 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginVertical="12dp"
-            android:text="Name"
+            android:text="Название"
             android:textAppearance="@style/TextAppearance.StudentAssistant.SmallTitle.Neutral90" />
 
         <EditText
+            android:id="@+id/project_edit_name"
             style="@style/Theme.StudentAssistant.EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:hint="Enter the name of the project" />
+            android:layout_marginHorizontal="24dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginVertical="12dp"
-            android:text="Description"
+            android:text="Описание"
             android:textAppearance="@style/TextAppearance.StudentAssistant.SmallTitle.Neutral90" />
 
         <EditText
+            android:id="@+id/project_edit_desc"
             style="@style/Theme.StudentAssistant.EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:hint="Enter project description" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginVertical="18dp"
-            android:background="@color/neutral20" />
+            android:layout_marginHorizontal="24dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginVertical="12dp"
-            android:text="From"
+            android:text="Дата начала"
             android:textAppearance="@style/TextAppearance.StudentAssistant.SmallTitle.Neutral90" />
 
         <EditText
+            android:id="@+id/project_edit_from"
             style="@style/TextAppearance.StudentAssistant.Input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:drawableEnd="@drawable/ic_calendar"
-            android:inputType="date"
-            android:text="24.12.2022" />
+            android:inputType="date"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginVertical="12dp"
-            android:text="To"
+            android:text="Дата окончания"
             android:textAppearance="@style/TextAppearance.StudentAssistant.SmallTitle.Neutral90" />
 
         <EditText
+            android:id="@+id/project_edit_to"
             style="@style/TextAppearance.StudentAssistant.Input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:drawableEnd="@drawable/ic_calendar"
-            android:inputType="date"
-            android:text="15.01.2023" />
+            android:inputType="date" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginVertical="12dp"
-            android:text="Number of students"
+            android:text="Дата окончания набора"
+            android:textAppearance="@style/TextAppearance.StudentAssistant.SmallTitle.Neutral90" />
+
+        <EditText
+            android:id="@+id/project_edit_rec_to"
+            style="@style/TextAppearance.StudentAssistant.Input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:drawableEnd="@drawable/ic_calendar"
+            android:inputType="date" />
+
+        <TextView
+            android:id="@+id/project_edit_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginVertical="12dp"
+            android:text="Количество участников"
             android:textAppearance="@style/TextAppearance.StudentAssistant.SmallTitle.Neutral90" />
 
         <SeekBar
+            android:id="@+id/project_edit_number_value"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginVertical="12dp"
             android:progress="24" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginVertical="18dp"
-            android:background="@color/neutral20" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/tv_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="24dp"
-                android:text="Status"
-                android:textAppearance="@style/TextAppearance.StudentAssistant.SmallTitle.Neutral90"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tv_status_view_all"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="View all"
-                android:textAppearance="@style/TextAppearance.StudentAssistant.SmallText"
-                app:layout_constraintStart_toStartOf="@id/tv_status"
-                app:layout_constraintTop_toBottomOf="@id/tv_status" />
-
-            <ImageView
-                android:id="@+id/iv_status_arrow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="32dp"
-                android:src="@drawable/ic_arrow"
-                app:layout_constraintBottom_toBottomOf="@id/tv_status_view_all"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tv_status" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/project_edit_project_status"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="12dp">
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginVertical="12dp"
+            android:text="Статус проекта"
+            android:textAppearance="@style/TextAppearance.StudentAssistant.SmallTitle.Neutral90" />
 
-            <TextView
-                android:id="@+id/tv_tags"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="24dp"
-                android:text="Tags"
-                android:textAppearance="@style/TextAppearance.StudentAssistant.SmallTitle.Neutral90"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <Spinner
+            android:id="@+id/project_edit_project_status_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:spinnerMode="dropdown"
+            android:layout_marginVertical="12dp" />
 
-            <TextView
-                android:id="@+id/tv_tags_view_all"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="View all"
-                android:textAppearance="@style/TextAppearance.StudentAssistant.SmallText"
-                app:layout_constraintStart_toStartOf="@id/tv_tags"
-                app:layout_constraintTop_toBottomOf="@id/tv_tags" />
+        <TextView
+            android:id="@+id/project_edit_rec_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginVertical="12dp"
+            android:text="Статус набора"
+            android:textAppearance="@style/TextAppearance.StudentAssistant.SmallTitle.Neutral90" />
 
-            <ImageView
-                android:id="@+id/iv_tags_arrow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="32dp"
-                android:src="@drawable/ic_arrow"
-                app:layout_constraintBottom_toBottomOf="@id/tv_tags_view_all"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tv_tags" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <Spinner
+            android:id="@+id/project_edit_rec_status_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:spinnerMode="dropdown"
+            android:layout_marginVertical="12dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -209,7 +178,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
                 android:layout_weight="1"
-                android:text="Delete" />
+                android:text="Удалить" />
 
             <Button
                 android:id="@+id/project_btn_save"
@@ -218,8 +187,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
                 android:layout_weight="1"
-                android:text="Save" />
-
+                android:text="Сохранить" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

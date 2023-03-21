@@ -25,13 +25,9 @@ class MainUI @Inject constructor(
 
     fun navigate() {
         val navController = fragment.findNavController()
-//        fragment.binding.mainIbFilter.setOnClickListener {
-//            val action = MainFragmentDirections.actionMainFragmentToFiltersFragment()
-//            navController.navigate(action)
-//        }
         fragment.binding.apply {
             mainIbPlus.setOnClickListener {
-                val action = MainFragmentDirections.actionMainFragmentToProjectEditFragment()
+                val action = MainFragmentDirections.actionMainFragmentToProjectEditFragment(-1)
                 navController.navigate(action)
             }
             mainIvMore.setOnClickListener {
@@ -50,6 +46,11 @@ class MainUI @Inject constructor(
                             navController.navigate(action)
                             return@setOnMenuItemClickListener true
                         }
+                        R.id.mi_logout -> {
+                            fragment.viewModel.logout()
+                            navController.popBackStack()
+                            return@setOnMenuItemClickListener true
+                        }
                         else -> {
                             return@setOnMenuItemClickListener true
                         }
@@ -57,19 +58,11 @@ class MainUI @Inject constructor(
                 }
                 popup.show()
             }
-        }
-//        fragment.binding.mainIvAvatar.setOnClickListener {
-//            val action = MainFragmentDirections.actionMainFragmentToProfileFragment()
-//            navController.navigate(action)
-//        }
-//        fragment.binding.mainIvEdit.setOnClickListener {
-//            val action = MainFragmentDirections.actionMainFragmentToProfileEditFragment()
-//            navController.navigate(action)
-//        }
-        adapter.onItemClick = {
-            val action =
-                MainFragmentDirections.actionMainFragmentToProjectDetailFragment(it.first.id)
-            navController.navigate(action)
+            adapter.onItemClick = {
+                val action =
+                    MainFragmentDirections.actionMainFragmentToProjectDetailFragment(it.id)
+                navController.navigate(action)
+            }
         }
     }
 
@@ -85,23 +78,20 @@ class MainUI @Inject constructor(
             val searchManager = fragment.requireContext().getSystemService(Context.SEARCH_SERVICE) as SearchManager
             mainEtSearch.setSearchableInfo(searchManager.getSearchableInfo(fragment.requireActivity().componentName))
             mainEtSearch.setOnSearchClickListener {
-//                mainIvEdit.visibility = View.GONE
-//                mainIvAvatar.visibility = View.GONE
                 mainRgTabs.visibility = View.GONE
                 mainIbPlus.visibility = View.GONE
                 mainRgTabs.visibility = View.GONE
+                mainIvMore.visibility = View.GONE
+                mainTitle.visibility = View.GONE
             }
         }
     }
 
-    fun filter(query: String) {
-        fragment.viewModel.setQuery(query)
-    }
-
     fun observeViewModel() {
         fragment.viewModel.apply {
+            load()
             cards.observe(fragment.viewLifecycleOwner) { items -> adapter.submitList(items) }
         }
-        EnumUtil.query.observe(fragment.viewLifecycleOwner) { filter(it) }
+        EnumUtil.query.observe(fragment.viewLifecycleOwner) { fragment.viewModel.setQuery(it) }
     }
 }

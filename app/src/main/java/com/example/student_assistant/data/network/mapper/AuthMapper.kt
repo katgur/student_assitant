@@ -4,6 +4,7 @@ import com.example.student_assistant.data.network.entity.GetUserResponse
 import com.example.student_assistant.data.network.entity.LoginRequest
 import com.example.student_assistant.data.network.entity.MessageResponse
 import com.example.student_assistant.data.network.entity.RegistrationRequest
+import com.example.student_assistant.data.network.entity.UpdateUserRequest
 import com.example.student_assistant.data.network.entity.VerificationRequest
 import com.example.student_assistant.domain.entity.LoginInfo
 import com.example.student_assistant.domain.entity.RegistrationInfo
@@ -27,6 +28,11 @@ class AuthMapper @Inject constructor() {
 
     fun map(info: LoginInfo): LoginRequest {
         return LoginRequest(info.email, info.password)
+    }
+
+    fun map(info: UserInfo): UpdateUserRequest {
+        val spl = info.name.split(' ')
+        return UpdateUserRequest(spl[0], spl[1], info.bio)
     }
 
     fun map(response: GetUserResponse): UserInfo {

@@ -15,24 +15,13 @@ class FilterViewModel : ViewModel() {
     val isSwapped: LiveData<Boolean> = _isSwapped
 
     // Todo: load parameters from sources
-    private val interests = listOf("Lorem ipsum", "Lorem ipsum dolor", "Lorem", "Lorem ipsum dolor sit")
-    private val statuses = listOf("Создан", "Завершен", "Есть вакансии")
+    private val statuses = listOf("Создан", "В процессе", "Завершен")
 
     init {
-        Log.d("kek", "FilterViewModel init")
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        Log.d("kek", "filter viewmodel cleared")
+        _parameters.value = statuses
     }
 
     fun setIsSwapped(isSwapped: Boolean) {
-        _isSwapped.value = isSwapped
-        if (isSwapped) {
-            _parameters.value = interests
-        } else {
-            _parameters.value = statuses
-        }
+
     }
 }

@@ -1,4 +1,4 @@
-package com.example.student_assistant.ui.fragment
+package com.example.student_assistant.ui.auth
 
 import android.content.Context
 import android.os.Bundle
