@@ -2,6 +2,7 @@ package com.example.student_assistant.ui.main
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -44,6 +45,11 @@ class MainFragment : Fragment() {
             setupHandlers()
             observeViewModel()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.checkIfAuthorized()
     }
 
     override fun onDestroyView() {

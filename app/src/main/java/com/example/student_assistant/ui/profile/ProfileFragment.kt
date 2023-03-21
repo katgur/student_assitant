@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.student_assistant.App
+import com.example.student_assistant.R
 import com.example.student_assistant.databinding.FragmentMainBinding
 import com.example.student_assistant.databinding.FragmentProfileBinding
 import com.example.student_assistant.ui.main.MainViewModel
@@ -19,7 +21,7 @@ class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     val binding get() = _binding!!
-    val viewModel: ProfileViewModel by viewModels {
+    val viewModel: ProfileViewModel by activityViewModels {
         (requireActivity().applicationContext as App).getApplicationComponent().viewModelFactory()
     }
 
@@ -40,9 +42,18 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.profileBtnEdit.setOnClickListener {
-            val action = ProfileFragmentDirections.actionProfileFragmentToProfileEditFragment()
-            findNavController().navigate(action)
+        binding.apply {
+            profileBtnEdit.setOnClickListener {
+                val action = ProfileFragmentDirections.actionProfileFragmentToProfileEditFragment()
+                findNavController().navigate(action)
+            }
+            ivBack.setOnClickListener {
+                findNavController().popBackStack()
+            }
+            ivExit.setOnClickListener {
+                viewModel.logout()
+                findNavController().popBackStack()
+            }
         }
 
         viewModel.apply {
@@ -55,6 +66,15 @@ class ProfileFragment : Fragment() {
             message.observe(viewLifecycleOwner) {
                 Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
             }
+            isLoading.observe(viewLifecycleOwner) {
+                binding.profilePb.visibility = if (it) View.VISIBLE else View.GONE
+            }
         }
+    }
+
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 }

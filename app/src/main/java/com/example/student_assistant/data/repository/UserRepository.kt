@@ -1,6 +1,8 @@
 package com.example.student_assistant.data.repository
 
 import android.util.Log
+import androidx.room.withTransaction
+import com.example.student_assistant.data.local.AppDatabase
 import com.example.student_assistant.data.local.UserDao
 import com.example.student_assistant.data.local.mapper.UserMapper
 import com.example.student_assistant.data.network.AuthApi
@@ -57,6 +59,22 @@ class UserRepository @Inject constructor(
         } catch (exc: Exception) {
             exc.printStackTrace()
             Result.failure(IllegalStateException("Something went wrong"))
+        }
+    }
+
+    override suspend fun getCachedUser(): Result<LoginInfo> {
+        return try {
+            val cachedUser = dao.getUser()
+            Log.d("kek", cachedUser.joinToString { it.email })
+            if (cachedUser.isEmpty()) {
+                Result.failure(IllegalStateException())
+            } else {
+                val cachedLoginInfo = mapper.mapToLoginInfo(cachedUser[0])
+                Result.success(cachedLoginInfo)
+            }
+        } catch (exc: Exception) {
+            exc.printStackTrace()
+            Result.failure(exc)
         }
     }
 

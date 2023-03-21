@@ -3,6 +3,7 @@ package com.example.student_assistant.ui.main
 import android.animation.ValueAnimator
 import android.app.SearchManager
 import android.content.Context
+import android.util.Log
 import android.view.MenuInflater
 import android.view.View
 import android.view.animation.DecelerateInterpolator
@@ -12,6 +13,7 @@ import androidx.core.view.marginTop
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.student_assistant.R
+import com.example.student_assistant.databinding.SampleLayoutBinding
 import com.example.student_assistant.ui.main.adapter.CardAdapter
 import com.example.student_assistant.util.EnumUtil
 import com.google.android.material.appbar.AppBarLayout
@@ -32,7 +34,7 @@ class MainUI @Inject constructor(
                 navController.navigate(action)
             }
             mainIvMore.setOnClickListener {
-                val action = MainFragmentDirections.actionMainFragmentToProfileFragment()
+                val action = MainFragmentDirections.actionMainFragmentToProfileNavGraph()
                 navController.navigate(action)
             }
             adapter.onItemClick = {
@@ -69,6 +71,7 @@ class MainUI @Inject constructor(
                 mainIvMore.visibility = View.VISIBLE
                 mainTitle.visibility = View.VISIBLE
                 mainAbl.setExpanded(true)
+                fragment.viewModel.load()
                 return@setOnCloseListener false
             }
             mainRgTabs.setOnCheckedChangeListener { _, i ->
@@ -79,6 +82,11 @@ class MainUI @Inject constructor(
 
     fun observeViewModel() {
         fragment.viewModel.apply {
+            isAuthorized.observe(fragment.viewLifecycleOwner) {
+                if (!it) {
+                    fragment.requireActivity().finish()
+                }
+            }
             cards.observe(fragment.viewLifecycleOwner) { items -> adapter.submitList(items) }
             isSwapped.observe(fragment.viewLifecycleOwner) {
                 if (it) {
@@ -86,6 +94,9 @@ class MainUI @Inject constructor(
                 } else {
                     fragment.binding.mainRgTabs.check(R.id.rb_all)
                 }
+            }
+            isLoading.observe(fragment.viewLifecycleOwner) {
+                fragment.binding.mainPb.visibility = if (it) View.VISIBLE else View.GONE
             }
         }
         EnumUtil.query.observe(fragment.viewLifecycleOwner) { fragment.viewModel.setQuery(it) }

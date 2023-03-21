@@ -3,28 +3,39 @@ package com.example.student_assistant.ui.main
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.student_assistant.domain.entity.Card
 import com.example.student_assistant.domain.repository.IProjectRepository
 import com.example.student_assistant.domain.repository.IUserRepository
+import com.example.student_assistant.ui.BaseViewModel
 import kotlinx.coroutines.launch
 
 class MainViewModel(
     private val projectRepository: IProjectRepository,
     private val userRepository: IUserRepository,
-) : ViewModel() {
+) : BaseViewModel() {
 
+    private val _isAuthorized = MutableLiveData<Boolean>()
+    val isAuthorized: LiveData<Boolean> = _isAuthorized
     private val _cards = MutableLiveData<List<Card>>(emptyList())
     val cards: LiveData<List<Card>> = _cards
-    private val _message = MutableLiveData<String>()
-    val message: LiveData<String> = _message
     private val _isSwapped = MutableLiveData(false)
     val isSwapped: LiveData<Boolean> = _isSwapped
 
-    fun load(isSwapped: Boolean) {
-        viewModelScope.launch {
-            val result = if (!isSwapped) {
+    init {
+        Log.d("kek", "main")
+    }
+
+    fun checkIfAuthorized() {
+        suspendableLaunch {
+            val result = userRepository.getCachedUser()
+            _isAuthorized.postValue(result.isSuccess)
+        }
+    }
+
+    fun load(isSwapped: Boolean? = _isSwapped.value) {
+        suspendableLaunch {
+            val result = if (isSwapped != null && !isSwapped) {
                 projectRepository.getProjects()
             } else {
                 Result.success(listOf())
@@ -38,19 +49,13 @@ class MainViewModel(
     }
 
     fun setQuery(query: String) {
-        viewModelScope.launch {
+        suspendableLaunch {
             val result = projectRepository.searchProject(query)
             if (result.isSuccess) {
                 _cards.postValue(result.getOrNull())
             } else {
                 _message.postValue(result.exceptionOrNull()?.message)
             }
-        }
-    }
-
-    fun logout() {
-        viewModelScope.launch {
-            userRepository.logout()
         }
     }
 }

@@ -2,6 +2,7 @@ package com.example.student_assistant.ui.auth
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,6 +55,8 @@ class AuthFragment : Fragment() {
         binding.apply {
             btnLogin.setOnClickListener {
                 viewModel.login(authEmail.text.toString(), authPassword.text.toString())
+                authEmail.setText("")
+                authPassword.setText("")
             }
             btnRegister.setOnClickListener {
                 val action = AuthFragmentDirections.actionAuthFragmentToRegistrationFragment()

@@ -13,20 +13,5 @@ class ProfileEditViewModel @Inject constructor(
     private val userRepository: IUserRepository
 ) : ViewModel() {
 
-    private val _isUpdated = MutableLiveData<Boolean>()
-    val isUpdated: LiveData<Boolean> = _isUpdated
-    private val _message = MutableLiveData<String>()
-    val message: LiveData<String> = _message
 
-    fun update(name: String, surname: String, bio: String) {
-        viewModelScope.launch {
-            val result = userRepository.updateUser(name, surname, bio)
-            if (result.isSuccess) {
-                _message.postValue("Your profile data is changed successfully")
-                _isUpdated.postValue(true)
-            } else {
-                _message.postValue(result.exceptionOrNull()?.message)
-            }
-        }
-    }
 }

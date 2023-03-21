@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.student_assistant.App
@@ -18,7 +19,7 @@ class ProfileEditFragment : Fragment() {
 
     private var _binding: FragmentProfileEditBinding? = null
     val binding get() = _binding!!
-    val viewModel: ProfileEditViewModel by viewModels {
+    val viewModel: ProfileViewModel by activityViewModels {
         (requireActivity().applicationContext as App).getApplicationComponent().viewModelFactory()
     }
 
@@ -46,10 +47,16 @@ class ProfileEditFragment : Fragment() {
             isUpdated.observe(viewLifecycleOwner) {
                 findNavController().popBackStack()
             }
+            isLoading.observe(viewLifecycleOwner) {
+                binding.profileEditPb.visibility = if (it) View.VISIBLE else View.GONE
+            }
         }
 
         binding.apply {
             profileEditCancel.setOnClickListener {
+                findNavController().popBackStack()
+            }
+            profileEditIvBack.setOnClickListener {
                 findNavController().popBackStack()
             }
             profileEditSave.setOnClickListener {
