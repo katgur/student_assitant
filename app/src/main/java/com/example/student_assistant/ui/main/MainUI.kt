@@ -8,6 +8,7 @@ import android.view.View
 import android.view.animation.DecelerateInterpolator
 import android.widget.PopupMenu
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.view.marginTop
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.student_assistant.R
@@ -31,32 +32,8 @@ class MainUI @Inject constructor(
                 navController.navigate(action)
             }
             mainIvMore.setOnClickListener {
-                val popup = PopupMenu(fragment.requireContext(), it)
-                val inflater: MenuInflater = popup.menuInflater
-                inflater.inflate(R.menu.main_menu, popup.menu)
-                popup.setOnMenuItemClickListener { item ->
-                    when (item.itemId) {
-                        R.id.mi_profile -> {
-                            val action = MainFragmentDirections.actionMainFragmentToProfileFragment()
-                            navController.navigate(action)
-                            return@setOnMenuItemClickListener true
-                        }
-                        R.id.mi_settings -> {
-                            val action = MainFragmentDirections.actionMainFragmentToProfileEditFragment()
-                            navController.navigate(action)
-                            return@setOnMenuItemClickListener true
-                        }
-                        R.id.mi_logout -> {
-                            fragment.viewModel.logout()
-                            navController.popBackStack()
-                            return@setOnMenuItemClickListener true
-                        }
-                        else -> {
-                            return@setOnMenuItemClickListener true
-                        }
-                    }
-                }
-                popup.show()
+                val action = MainFragmentDirections.actionMainFragmentToProfileFragment()
+                navController.navigate(action)
             }
             adapter.onItemClick = {
                 val action =
@@ -83,14 +60,33 @@ class MainUI @Inject constructor(
                 mainRgTabs.visibility = View.GONE
                 mainIvMore.visibility = View.GONE
                 mainTitle.visibility = View.GONE
+                mainAbl.setExpanded(false)
+            }
+            mainEtSearch.setOnCloseListener {
+                mainRgTabs.visibility = View.VISIBLE
+                mainIbPlus.visibility = View.VISIBLE
+                mainRgTabs.visibility = View.VISIBLE
+                mainIvMore.visibility = View.VISIBLE
+                mainTitle.visibility = View.VISIBLE
+                mainAbl.setExpanded(true)
+                return@setOnCloseListener false
+            }
+            mainRgTabs.setOnCheckedChangeListener { _, i ->
+                fragment.viewModel.load(i == R.id.rb_rec)
             }
         }
     }
 
     fun observeViewModel() {
         fragment.viewModel.apply {
-            load()
             cards.observe(fragment.viewLifecycleOwner) { items -> adapter.submitList(items) }
+            isSwapped.observe(fragment.viewLifecycleOwner) {
+                if (it) {
+                    fragment.binding.mainRgTabs.check(R.id.rb_rec)
+                } else {
+                    fragment.binding.mainRgTabs.check(R.id.rb_all)
+                }
+            }
         }
         EnumUtil.query.observe(fragment.viewLifecycleOwner) { fragment.viewModel.setQuery(it) }
     }

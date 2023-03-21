@@ -19,10 +19,16 @@ class MainViewModel(
     val cards: LiveData<List<Card>> = _cards
     private val _message = MutableLiveData<String>()
     val message: LiveData<String> = _message
+    private val _isSwapped = MutableLiveData(false)
+    val isSwapped: LiveData<Boolean> = _isSwapped
 
-    fun load() {
+    fun load(isSwapped: Boolean) {
         viewModelScope.launch {
-            val result = projectRepository.getProjects()
+            val result = if (!isSwapped) {
+                projectRepository.getProjects()
+            } else {
+                Result.success(listOf())
+            }
             if (result.isSuccess) {
                 _cards.postValue(result.getOrNull())
             } else {

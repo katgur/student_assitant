@@ -23,17 +23,29 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="24dp">
+                android:layout_marginHorizontal="24dp"
+                android:paddingTop="84dp">
+
+                <TextView
+                    android:id="@+id/main_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:textAppearance="@style/TextAppearance.StudentAssistant.LargeTitle.Neutral90"
+                    android:text="Проекты" />
 
                 <SearchView
                     android:id="@+id/main_et_search"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_search"
                     app:layout_constraintEnd_toStartOf="@id/main_ib_plus"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@id/main_title" />
 
                 <ImageButton
                     android:id="@+id/main_ib_plus"
@@ -55,14 +67,15 @@
                     app:layout_constraintTop_toBottomOf="@id/main_et_search">
 
                     <RadioButton
+                        android:id="@+id/rb_all"
                         style="@style/Theme.StudentAssistant.Tab"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="5dp"
-                        android:checked="true"
-                        android:text="Мои" />
+                        android:text="Все" />
 
                     <RadioButton
+                        android:id="@+id/rb_rec"
                         style="@style/Theme.StudentAssistant.Tab"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -79,21 +92,11 @@
                 android:layout_height="?android:attr/actionBarSize"
                 android:elevation="-1dp">
 
-                <TextView
-                    android:id="@+id/main_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:textAppearance="@style/TextAppearance.StudentAssistant.Title.Neutral90"
-                    android:text="Проекты" />
-
                 <ImageView
                     android:id="@+id/main_iv_more"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_more"
-                    android:layout_marginEnd="24dp"
-                    android:layout_gravity="end" />
+                    android:src="@drawable/ic_account" />
 
             </Toolbar>
 
