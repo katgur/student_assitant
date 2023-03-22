@@ -37,6 +37,11 @@ class AuthFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.checkIfAuthorized()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -49,6 +54,9 @@ class AuthFragment : Fragment() {
             }
             message.observe(viewLifecycleOwner) {
                 Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+            }
+            isLoading.observe(viewLifecycleOwner) {
+                binding.authPb.visibility = if (it) View.VISIBLE else View.GONE
             }
         }
 

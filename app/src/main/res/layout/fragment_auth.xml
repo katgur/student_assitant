@@ -54,4 +54,10 @@
         android:layout_marginTop="24dp"
         style="@style/Theme.StudentAssistant.TransparentButton" />
 
+    <ProgressBar
+        android:id="@+id/auth_pb"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
 </LinearLayout>

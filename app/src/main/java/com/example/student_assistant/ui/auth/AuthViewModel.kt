@@ -12,27 +12,28 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class AuthViewModel @Inject constructor(
-    private val userRepository: IUserRepository
+    private val userRepository: IUserRepository,
 ) : BaseViewModel() {
 
     private val _isLoggedIn = MutableLiveData<Boolean>()
     val isLoggedIn: LiveData<Boolean> = _isLoggedIn
 
-    init {
-        Log.d("kek", "auth")
-    }
-
     fun checkIfAuthorized() {
-        _isLoggedIn.value = false
+        suspendableLaunch {
+            val result = userRepository.getCachedUser()
+            if (result.isSuccess) {
+                _isLoggedIn.postValue(true)
+            }
+        }
     }
 
     fun login(email: String, password: String) {
+        if (email.isBlank() || password.isBlank()) {
+            _message.postValue("Invalid data")
+        }
         suspendableLaunch {
             val result = userRepository.login(LoginInfo(email, password))
-            Log.d("kek", "login")
             if (result.isSuccess) {
-                Log.d("kek", "login success")
-                _message.postValue("You are successfully logged in")
                 _isLoggedIn.postValue(true)
             } else {
                 _message.postValue(result.exceptionOrNull()?.message)
