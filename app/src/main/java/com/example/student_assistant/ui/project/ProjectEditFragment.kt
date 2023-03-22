@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.student_assistant.App
@@ -21,7 +22,7 @@ class ProjectEditFragment : Fragment() {
     private var _binding: FragmentProjectEditBinding? = null
 
     val binding get() = _binding!!
-    val viewModel: ProjectViewModel by viewModels {
+    val viewModel: ProjectViewModel by activityViewModels {
         (requireActivity().applicationContext as App).getApplicationComponent().viewModelFactory()
     }
 
@@ -43,16 +44,10 @@ class ProjectEditFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("kek", "project edit on view cre")
-
-
-        val id = arguments?.getInt("id")
         ui.apply {
             navigate()
             setupHandlers()
-            if (id != null) {
-                setupViewModel(id)
-            }
+            setupViewModel()
         }
     }
 

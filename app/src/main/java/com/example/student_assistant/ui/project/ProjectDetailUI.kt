@@ -1,19 +1,27 @@
 package com.example.student_assistant.ui.project
 
+import android.util.Log
 import androidx.navigation.fragment.findNavController
 import javax.inject.Inject
 
-class ProjectDetailUI @Inject constructor(private val fragment: ProjectDetailFragment) {
+class ProjectDetailUI @Inject constructor(
+    private val fragment: ProjectDetailFragment,
+) {
 
     fun load() {
-        val id = fragment.arguments?.getInt("id")
+        val id = fragment.requireActivity().intent.extras?.getInt("id")
         if (id != null) {
             fragment.viewModel.setId(id)
         }
-        fragment.binding.detailsEdit.setOnClickListener {
-            if (id != null) {
-                val action = ProjectDetailFragmentDirections.actionProjectDetailFragmentToProjectEditFragment(id)
-                fragment.findNavController().navigate(action)
+        fragment.binding.apply {
+            detailsIvBack.setOnClickListener {
+                fragment.requireActivity().finish()
+            }
+            detailsIvEdit.setOnClickListener {
+                if (id != null) {
+                    val action = ProjectDetailFragmentDirections.actionProjectDetailFragmentToProjectEditFragment()
+                    fragment.findNavController().navigate(action)
+                }
             }
         }
     }

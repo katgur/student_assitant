@@ -48,11 +48,11 @@ class ProfileFragment : Fragment() {
                 findNavController().navigate(action)
             }
             ivBack.setOnClickListener {
-                findNavController().popBackStack()
+                requireActivity().finish()
             }
             ivExit.setOnClickListener {
                 viewModel.logout()
-                findNavController().popBackStack()
+                requireActivity().finish()
             }
         }
 

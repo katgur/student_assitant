@@ -1,23 +1,13 @@
 package com.example.student_assistant.ui.main
 
-import android.animation.ValueAnimator
 import android.app.SearchManager
 import android.content.Context
-import android.util.Log
-import android.view.MenuInflater
 import android.view.View
-import android.view.animation.DecelerateInterpolator
-import android.widget.PopupMenu
-import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.core.view.marginTop
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.student_assistant.R
-import com.example.student_assistant.databinding.SampleLayoutBinding
 import com.example.student_assistant.ui.main.adapter.CardAdapter
 import com.example.student_assistant.util.EnumUtil
-import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.appbar.CollapsingToolbarLayout
 import javax.inject.Inject
 
 
@@ -30,16 +20,16 @@ class MainUI @Inject constructor(
         val navController = fragment.findNavController()
         fragment.binding.apply {
             mainIbPlus.setOnClickListener {
-                val action = MainFragmentDirections.actionMainFragmentToProjectEditFragment(-1)
+                val action = MainFragmentDirections.actionMainFragmentToProjectActivity(-1)
                 navController.navigate(action)
             }
             mainIvMore.setOnClickListener {
-                val action = MainFragmentDirections.actionMainFragmentToProfileNavGraph()
+                val action = MainFragmentDirections.actionMainFragmentToProfileActivity()
                 navController.navigate(action)
             }
             adapter.onItemClick = {
                 val action =
-                    MainFragmentDirections.actionMainFragmentToProjectDetailFragment(it.id)
+                    MainFragmentDirections.actionMainFragmentToProjectActivity(it.id)
                 navController.navigate(action)
             }
         }

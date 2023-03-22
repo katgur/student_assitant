@@ -30,6 +30,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.profile.ProfileActivity"
+            android:launchMode="singleTop"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".ui.project.ProjectActivity"
+            android:launchMode="singleTop"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>

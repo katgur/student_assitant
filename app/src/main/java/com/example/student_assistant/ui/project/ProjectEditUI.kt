@@ -56,9 +56,8 @@ class ProjectEditUI @Inject constructor(private val fragment: ProjectEditFragmen
         }
     }
 
-    fun setupViewModel(_id: Int) {
+    fun setupViewModel() {
         fragment.viewModel.apply {
-            setId(_id)
             id.observe(fragment.viewLifecycleOwner) {
                 if (it != null && it != -1) {
                     fragment.binding.apply {

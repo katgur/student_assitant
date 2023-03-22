@@ -1,4 +1,4 @@
-package com.example.student_assistant.ui.profile
+package com.example.student_assistant.ui.project
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -9,14 +9,16 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 
-class ProfileActivity : AppCompatActivity(), HasAndroidInjector {
+class ProjectActivity : AppCompatActivity(), HasAndroidInjector {
     @Inject
     lateinit var androidInjector: DispatchingAndroidInjector<Any>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.profile_layout)
+        setContentView(R.layout.project_layout)
     }
+
     override fun androidInjector(): AndroidInjector<Any> {
         return androidInjector
     }

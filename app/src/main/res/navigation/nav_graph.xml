@@ -13,14 +13,11 @@
             android:id="@+id/action_mainFragment_to_filtersFragment"
             app:destination="@id/filtersFragment" />
         <action
-            android:id="@+id/action_mainFragment_to_projectEditFragment"
-            app:destination="@id/projectEditFragment" />
+            android:id="@+id/action_mainFragment_to_profileActivity"
+            app:destination="@id/profileActivity" />
         <action
-            android:id="@+id/action_mainFragment_to_projectDetailFragment"
-            app:destination="@id/projectDetailFragment" />
-        <action
-            android:id="@+id/action_mainFragment_to_profile_nav_graph"
-            app:destination="@id/profile_nav_graph" />
+            android:id="@+id/action_mainFragment_to_projectActivity"
+            app:destination="@id/projectActivity" />
     </fragment>
     <fragment
         android:id="@+id/filtersFragment"
@@ -31,33 +28,10 @@
             app:destination="@id/parametersFragment" />
     </fragment>
     <fragment
-        android:id="@+id/projectEditFragment"
-        android:name="com.example.student_assistant.ui.project.ProjectEditFragment"
-        android:label="ProjectEditFragment" >
-        <action
-            android:id="@+id/action_projectEditFragment_to_parametersFragment"
-            app:destination="@id/parametersFragment" />
-        <argument
-            android:name="id"
-            app:argType="integer" />
-    </fragment>
-    <fragment
         android:id="@+id/parametersFragment"
         android:name="com.example.student_assistant.ui.parameter.ParameterFragment"
         android:label="fragment_parameters"
         tools:layout="@layout/fragment_parameters" />
-    <fragment
-        android:id="@+id/projectDetailFragment"
-        android:name="com.example.student_assistant.ui.project.ProjectDetailFragment"
-        android:label="fragment_details"
-        tools:layout="@layout/fragment_details" >
-        <argument
-            android:name="id"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_projectDetailFragment_to_projectEditFragment"
-            app:destination="@id/projectEditFragment" />
-    </fragment>
     <fragment
         android:id="@+id/authFragment"
         android:name="com.example.student_assistant.ui.auth.AuthFragment"
@@ -75,5 +49,16 @@
         android:name="com.example.student_assistant.ui.auth.RegistrationFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
-    <include app:graph="@navigation/profile_nav_graph" />
+    <activity
+        android:id="@+id/profileActivity"
+        android:name="com.example.student_assistant.ui.profile.ProfileActivity"
+        android:label="ProfileActivity" />
+    <activity
+        android:id="@+id/projectActivity"
+        android:name="com.example.student_assistant.ui.project.ProjectActivity"
+        android:label="ProjectActivity" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </activity>
 </navigation>

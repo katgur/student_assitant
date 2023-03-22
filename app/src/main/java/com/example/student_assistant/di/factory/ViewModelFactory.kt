@@ -8,7 +8,6 @@ import com.example.student_assistant.ui.filter.FilterViewModel
 import com.example.student_assistant.ui.auth.AuthViewModel
 import com.example.student_assistant.ui.auth.RegistrationViewModel
 import com.example.student_assistant.ui.main.MainViewModel
-import com.example.student_assistant.ui.profile.ProfileEditViewModel
 import com.example.student_assistant.ui.profile.ProfileViewModel
 import com.example.student_assistant.ui.project.ProjectViewModel
 import javax.inject.Inject
@@ -24,8 +23,6 @@ class ViewModelFactory @Inject constructor(
             MainViewModel(projectRepository, userRepository) as T
         else if (modelClass.isAssignableFrom(ProfileViewModel::class.java))
             ProfileViewModel(userRepository) as T
-        else if (modelClass.isAssignableFrom(ProfileEditViewModel::class.java))
-            ProfileEditViewModel(userRepository) as T
         else if (modelClass.isAssignableFrom(ProjectViewModel::class.java))
             ProjectViewModel(projectRepository) as T
         else if (modelClass.isAssignableFrom(FilterViewModel::class.java))
