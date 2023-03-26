@@ -52,6 +52,7 @@ class ProjectDetailUI @Inject constructor(
                 detailsTvRecStatusVal.text = it.recruitingStatus
                 detailsTvRecDateVal.text = it.applicationsDeadline
             }
+            adapter.submitList(it.tags)
         }
     }
 }
