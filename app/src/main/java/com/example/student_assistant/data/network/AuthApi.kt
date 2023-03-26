@@ -64,6 +64,6 @@ interface AuthApi {
     @GET("/recommend")
     suspend fun getRecommendedProjects(@Query("email") email: String): GetProjectsByEmailResponse
 
-    @POST("/apply")
+    @POST("/applications/apply")
     suspend fun joinProject(@Body request: JoinProjectRequest)
 }

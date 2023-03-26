@@ -10,28 +10,15 @@
         android:name="com.example.student_assistant.ui.main.MainFragment"
         android:label="MainFragment" >
         <action
-            android:id="@+id/action_mainFragment_to_filtersFragment"
-            app:destination="@id/filtersFragment" />
-        <action
             android:id="@+id/action_mainFragment_to_profileActivity"
             app:destination="@id/profileActivity" />
         <action
             android:id="@+id/action_mainFragment_to_projectActivity"
             app:destination="@id/projectActivity" />
-    </fragment>
-    <fragment
-        android:id="@+id/filtersFragment"
-        android:name="com.example.student_assistant.ui.filter.FilterFragment"
-        android:label="FiltersFragment" >
         <action
-            android:id="@+id/action_filtersFragment_to_parametersFragment"
-            app:destination="@id/parametersFragment" />
+            android:id="@+id/action_mainFragment_to_mainParametersFragment"
+            app:destination="@id/mainParametersFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/parametersFragment"
-        android:name="com.example.student_assistant.ui.project.ProjectParameterFragment"
-        android:label="fragment_parameters"
-        tools:layout="@layout/fragment_parameters" />
     <fragment
         android:id="@+id/authFragment"
         android:name="com.example.student_assistant.ui.auth.AuthFragment"
@@ -61,4 +48,8 @@
             android:name="id"
             app:argType="integer" />
     </activity>
+    <fragment
+        android:id="@+id/mainParametersFragment"
+        android:name="com.example.student_assistant.ui.main.MainParametersFragment"
+        android:label="MainParametersFragment" />
 </navigation>

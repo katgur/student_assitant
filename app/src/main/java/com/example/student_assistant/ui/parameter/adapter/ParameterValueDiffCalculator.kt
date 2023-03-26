@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class ParameterValueDiffCalculator @Inject constructor() : DiffUtil.ItemCallback<ParameterValue>() {
     override fun areItemsTheSame(oldItem: ParameterValue, newItem: ParameterValue): Boolean {
-        return oldItem == newItem
+        return oldItem.id == newItem.id && oldItem.page == newItem.page
     }
 
     override fun areContentsTheSame(oldItem: ParameterValue, newItem: ParameterValue): Boolean {

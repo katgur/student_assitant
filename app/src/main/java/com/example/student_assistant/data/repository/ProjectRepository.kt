@@ -73,9 +73,9 @@ class ProjectRepository @Inject constructor(
         }
     }
 
-    override suspend fun searchProject(substring: String): Result<List<Card>> {
+    override suspend fun searchProject(substring: String, projectStatus: String, recStatus: String): Result<List<Card>> {
         return try {
-            val request = SearchProjectsRequest(substring, "", "")
+            val request = apiMapper.map(substring, projectStatus, recStatus)
             val cards = apiMapper.map(api.searchProjects(request))
             Result.success(cards)
         } catch (exc: IllegalStateException) {

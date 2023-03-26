@@ -1,9 +1,11 @@
 package com.example.student_assistant.ui.main
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.student_assistant.R
 import com.example.student_assistant.domain.entity.Card
+import com.example.student_assistant.domain.entity.Parameter
 import com.example.student_assistant.domain.repository.IProjectRepository
 import com.example.student_assistant.domain.repository.IUserRepository
 import com.example.student_assistant.ui.BaseViewModel
@@ -20,11 +22,46 @@ class MainViewModel(
     private val _page = MutableLiveData(R.id.rb_all)
     val page: LiveData<Int> = _page
 
+    private val _pPage = MutableLiveData(R.id.param_project_status_rb)
+    val pPage: LiveData<Int> = _pPage
+    private val names = listOf("Статус проекта", "Статус набора")
+    private val statuses = listOf("Не начат", "Начат", "Завершен")
+    private val pages = listOf(R.id.param_project_status_rb, R.id.param_rec_status_rb)
+    private val _parameters = MutableLiveData<List<Parameter>>()
+    val parameters: LiveData<List<Parameter>> = _parameters
+
+    init {
+        _parameters.value = names.mapIndexed {index, name ->
+            Parameter(name, statuses, mutableListOf(0), pages[index])
+        }
+    }
+
+    fun reset() {
+        _parameters.value = _parameters.value?.map {
+            it.copy(chosen = mutableListOf())
+        }
+    }
+
     fun checkIfAuthorized() {
         suspendableLaunch {
             val result = userRepository.getCachedUser()
             _isAuthorized.postValue(result.isSuccess)
         }
+    }
+
+    fun setPPage(value: Int) {
+        _pPage.value = value
+    }
+
+    fun setChosenItem(parameter: Parameter) {
+        _parameters.value = _parameters.value?.map {
+            if (it.name == parameter.name) {
+                parameter
+            } else {
+                it
+            }
+        }
+        Log.d("kek", _parameters.value?.joinToString { it.toString() } ?: "null")
     }
 
     fun setPage(value: Int) {
@@ -46,8 +83,15 @@ class MainViewModel(
     }
 
     fun setQuery(query: String) {
+        val parameters = _parameters.value ?: return
+        Log.d("kek", parameters.joinToString { it.toString() })
+        val statuses = parameters.map { p ->
+            p.chosen.map { i ->
+                p.values[i]
+            }
+        }
         suspendableLaunch {
-            val result = projectRepository.searchProject(query)
+            val result = projectRepository.searchProject(query, statuses[0][0], statuses[1][0])
             if (result.isSuccess) {
                 _cards.postValue(result.getOrNull())
             } else {

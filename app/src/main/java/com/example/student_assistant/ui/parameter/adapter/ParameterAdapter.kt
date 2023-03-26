@@ -25,15 +25,23 @@ class ParameterAdapter @Inject constructor(diffCalculator: ParameterValueDiffCal
         return holder.bind(getItem(position), parameter, onItemClick)
     }
 
-    fun setParameter(value: Parameter) {
-        parameter = value
-        submitList(value.values.map {
-            ParameterValue(it, value.chosen.map { i -> value.values[i] }.contains(it), value.page)
-        })
+    fun setParameter(parameter: Parameter) {
+        this.parameter = parameter
+        val items = parameter.values.mapIndexed { index, value ->
+            ParameterValue(
+                index,
+                value,
+                parameter.chosen.map { i -> parameter.values[i] }.contains(value),
+                parameter.page
+            )
+        }
+        submitList(items)
     }
+
 
     inner class ParameterViewHolder(private val binding: ItemParameterBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ParameterValue, parameter: Parameter?, onClick: ((Parameter) -> Unit)?) {
+            Log.d("kek", parameter.toString())
             if (parameter == null) {
                 return
             }
@@ -56,9 +64,9 @@ class ParameterAdapter @Inject constructor(diffCalculator: ParameterValueDiffCal
                     itemFilterCb.isChecked = item.isSelected
                     itemFilterCb.setOnCheckedChangeListener { _, b ->
                         if (b) {
-                            parameter.chosen.add(adapterPosition)
+                            parameter.chosen.add(item.id)
                         } else {
-                            parameter.chosen.remove(adapterPosition)
+                            parameter.chosen.remove(item.id)
                         }
                         onClick?.invoke(parameter)
                     }

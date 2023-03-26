@@ -67,6 +67,9 @@ class MainUI @Inject constructor(
             mainRgTabs.setOnCheckedChangeListener { _, i ->
                 fragment.viewModel.setPage(i)
             }
+            mainIbParam.setOnClickListener {
+                fragment.findNavController().navigate(MainFragmentDirections.actionMainFragmentToMainParametersFragment())
+            }
         }
     }
 
