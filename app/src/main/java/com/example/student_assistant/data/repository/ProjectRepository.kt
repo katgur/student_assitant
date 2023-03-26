@@ -7,6 +7,7 @@ import com.example.student_assistant.data.local.mapper.UserMapper
 import com.example.student_assistant.data.local.mapper.ProjectMapper as LocalProjectMapper
 import com.example.student_assistant.data.network.AuthApi
 import com.example.student_assistant.data.network.entity.DeleteProjectRequest
+import com.example.student_assistant.data.network.entity.JoinProjectRequest
 import com.example.student_assistant.data.network.entity.SearchProjectsRequest
 import com.example.student_assistant.data.network.mapper.ProjectMapper as RemoteProjectMapper
 import com.example.student_assistant.domain.entity.Card
@@ -121,6 +122,21 @@ class ProjectRepository @Inject constructor(
                 val cachedLoginInfo = userMapper.mapToLoginInfo(cachedUser[0])
                 val projects = apiMapper.map(api.getRecommendedProjects(cachedLoginInfo.email))
                 Result.success(projects)
+            } else {
+                Result.failure(IllegalStateException("User is not authorized"))
+            }
+        } catch (exc: IllegalStateException) {
+            Result.failure(exc)
+        }
+    }
+
+    override suspend fun joinProject(projectId: Int): Result<Unit> {
+        return try {
+            val cachedUser = userDao.getUser()
+            if (cachedUser.isNotEmpty()) {
+                val cachedLoginInfo = userMapper.mapToLoginInfo(cachedUser[0])
+                api.joinProject(JoinProjectRequest(projectId, cachedLoginInfo.email))
+                Result.success(Unit)
             } else {
                 Result.failure(IllegalStateException("User is not authorized"))
             }

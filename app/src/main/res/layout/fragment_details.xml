@@ -152,7 +152,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         android:layout_marginVertical="12dp"
-        android:text="Присоединиться"
+        android:text="Подать заявку"
         style="@style/Theme.StudentAssistant.SmallButton" />
 
     <ProgressBar

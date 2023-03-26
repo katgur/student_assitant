@@ -31,6 +31,9 @@ class ProjectDetailUI @Inject constructor(
                     fragment.findNavController().navigate(action)
                 }
             }
+            detailsJoin.setOnClickListener {
+                fragment.viewModel.join()
+            }
         }
     }
 

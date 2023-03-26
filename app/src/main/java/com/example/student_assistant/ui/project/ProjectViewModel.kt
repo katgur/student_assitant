@@ -230,4 +230,18 @@ class ProjectViewModel @Inject constructor(
             }
         }
     }
+
+    fun join() {
+        if (id.value == null) {
+            return
+        }
+        suspendableLaunch {
+            val result = repository.joinProject(id.value!!)
+            if (result.isSuccess) {
+                _message.postValue("You joined the project successfully")
+            } else {
+                _message.postValue(result.exceptionOrNull()?.message)
+            }
+        }
+    }
 }

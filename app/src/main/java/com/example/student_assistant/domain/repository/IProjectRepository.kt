@@ -21,4 +21,6 @@ interface IProjectRepository {
     suspend fun getTags(): Result<List<String>>
 
     suspend fun getRecommendedProjects(): Result<List<Card>>
+
+    suspend fun joinProject(projectId: Int): Result<Unit>
 }
