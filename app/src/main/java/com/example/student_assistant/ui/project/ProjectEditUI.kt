@@ -76,7 +76,7 @@ class ProjectEditUI @Inject constructor(
                 fragment.binding.apply {
                     adapter.submitList(it)
                     adapter.onItemClick = {
-                        fragment.findNavController().navigate(ProjectEditFragmentDirections.actionProjectEditFragmentToParameterFragment(it.page))
+                        fragment.findNavController().navigate(ProjectEditFragmentDirections.actionProjectEditFragmentToProjectParameterFragment(it.page))
                     }
                     projectRv.adapter = adapter
                     projectRv.layoutManager = LinearLayoutManager(fragment.requireContext())

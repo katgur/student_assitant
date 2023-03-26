@@ -65,7 +65,6 @@ class UserRepository @Inject constructor(
     override suspend fun getCachedUser(): Result<LoginInfo> {
         return try {
             val cachedUser = dao.getUser()
-            Log.d("kek", cachedUser.joinToString { it.email })
             if (cachedUser.isEmpty()) {
                 Result.failure(IllegalStateException())
             } else {
@@ -81,10 +80,6 @@ class UserRepository @Inject constructor(
     override suspend fun getUser(): Result<UserInfo> {
         return try {
             val cachedUser = dao.getUser()[0]
-            val cachedUserInfo = mapper.mapToUserInfo(cachedUser)
-            if (cachedUserInfo != null) {
-                return Result.success(cachedUserInfo)
-            }
             val user = apiMapper.map(api.getUser(mapper.mapToLoginInfo(cachedUser).email))
             dao.setUser(mapper.mapFromUserInfo(user, cachedUser.email))
             Result.success(user)
@@ -96,12 +91,12 @@ class UserRepository @Inject constructor(
         }
     }
 
-    override suspend fun updateUser(name: String, surname: String, bio: String): Result<Unit> {
+    override suspend fun updateUser(name: String, surname: String, bio: String, tags: List<String>): Result<Unit> {
         return try {
             val cachedUser = dao.getUser()[0]
             val cachedUserInfo = mapper.mapToUserInfo(cachedUser)
             if (cachedUserInfo != null) {
-                val info = UserInfo(cachedUserInfo.isStudent, "$name $surname", bio, cachedUserInfo.contacts)
+                val info = UserInfo(cachedUserInfo.isStudent, "$name $surname", bio, cachedUserInfo.contacts, tags)
                 val loginInfo = mapper.mapToLoginInfo(cachedUser)
                 api.updateUser(loginInfo.email, apiMapper.map(info))
                 dao.setUser(mapper.mapFromUserInfo(info, loginInfo.email))

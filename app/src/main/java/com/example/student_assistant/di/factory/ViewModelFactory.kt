@@ -22,7 +22,7 @@ class ViewModelFactory @Inject constructor(
         return if (modelClass.isAssignableFrom(MainViewModel::class.java))
             MainViewModel(projectRepository, userRepository) as T
         else if (modelClass.isAssignableFrom(ProfileViewModel::class.java))
-            ProfileViewModel(userRepository) as T
+            ProfileViewModel(userRepository, projectRepository) as T
         else if (modelClass.isAssignableFrom(ProjectViewModel::class.java))
             ProjectViewModel(projectRepository) as T
         else if (modelClass.isAssignableFrom(FilterViewModel::class.java))

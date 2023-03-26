@@ -29,7 +29,7 @@
     </fragment>
     <fragment
         android:id="@+id/parametersFragment"
-        android:name="com.example.student_assistant.ui.parameter.ParameterFragment"
+        android:name="com.example.student_assistant.ui.project.ProjectParameterFragment"
         android:label="fragment_parameters"
         tools:layout="@layout/fragment_parameters" />
     <fragment

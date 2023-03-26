@@ -5,9 +5,10 @@ import com.example.student_assistant.ui.filter.FilterFragment
 import com.example.student_assistant.ui.auth.AuthFragment
 import com.example.student_assistant.ui.auth.RegistrationFragment
 import com.example.student_assistant.ui.main.MainFragment
-import com.example.student_assistant.ui.parameter.ParameterFragment
+import com.example.student_assistant.ui.project.ProjectParameterFragment
 import com.example.student_assistant.ui.profile.ProfileEditFragment
 import com.example.student_assistant.ui.profile.ProfileFragment
+import com.example.student_assistant.ui.profile.ProfileParameterFragment
 import com.example.student_assistant.ui.project.ProjectDetailFragment
 import com.example.student_assistant.ui.project.ProjectEditFragment
 import dagger.Module
@@ -22,7 +23,11 @@ abstract class FragmentModuleInjector {
 
     @FragmentScope
     @ContributesAndroidInjector
-    abstract fun contributeParametersFragment(): ParameterFragment
+    abstract fun contributeProjectParametersFragment(): ProjectParameterFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector
+    abstract fun contributeProfileParametersFragment(): ProfileParameterFragment
 
     @FragmentScope
     @ContributesAndroidInjector

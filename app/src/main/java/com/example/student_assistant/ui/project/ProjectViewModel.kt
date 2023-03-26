@@ -73,27 +73,6 @@ class ProjectViewModel @Inject constructor(
         }
     }
 
-    fun load() {
-        _parameter.addSource(page) {
-            if (it == R.id.param_project_status_rb) {
-                _parameters.value?.get(0)
-            } else if (it == R.id.param_rec_status_rb) {
-                _parameters.value?.get(1)
-            } else if (it == R.id.param_tags_rb) {
-                _parameters.value?.get(2)
-            }
-        }
-        _parameter.addSource(parameters) {
-            if (page.value == R.id.param_project_status_rb) {
-                it.get(0)
-            } else if (page.value == R.id.param_rec_status_rb) {
-                it.get(1)
-            } else if (page.value == R.id.param_tags_rb) {
-                it.get(2)
-            }
-        }
-    }
-
     fun setId(id: Int) {
         _id.value = id
         if (id != -1) {

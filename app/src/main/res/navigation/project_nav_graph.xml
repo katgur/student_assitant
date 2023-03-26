@@ -18,12 +18,12 @@
         android:name="com.example.student_assistant.ui.project.ProjectEditFragment"
         android:label="ProjectEditFragment" >
         <action
-            android:id="@+id/action_projectEditFragment_to_parameterFragment"
-            app:destination="@id/parameterFragment" />
+            android:id="@+id/action_projectEditFragment_to_projectParameterFragment"
+            app:destination="@id/projectParameterFragment" />
     </fragment>
     <fragment
-        android:id="@+id/parameterFragment"
-        android:name="com.example.student_assistant.ui.parameter.ParameterFragment"
+        android:id="@+id/projectParameterFragment"
+        android:name="com.example.student_assistant.ui.project.ProjectParameterFragment"
         android:label="fragment_parameters"
         tools:layout="@layout/fragment_parameters" >
         <argument

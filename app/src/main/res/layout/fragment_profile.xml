@@ -85,6 +85,18 @@
         android:layout_marginVertical="12dp"
         android:textAppearance="@style/TextAppearance.StudentAssistant.Text" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:text="Тэги"
+        android:textAppearance="@style/TextAppearance.StudentAssistant.SmallTitle.Neutral90" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/profile_rv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <ProgressBar
         android:id="@+id/profile_pb"
         android:visibility="gone"

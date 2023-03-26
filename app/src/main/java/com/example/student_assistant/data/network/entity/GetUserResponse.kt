@@ -11,4 +11,6 @@ data class GetUserResponse(
     val surname: String,
     @SerializedName("contacts")
     val contacts: String,
+    @SerializedName("tags")
+    val tags: List<String>,
 )

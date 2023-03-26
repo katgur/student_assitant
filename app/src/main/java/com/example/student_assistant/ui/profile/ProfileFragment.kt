@@ -16,6 +16,7 @@ import com.example.student_assistant.databinding.FragmentMainBinding
 import com.example.student_assistant.databinding.FragmentProfileBinding
 import com.example.student_assistant.ui.main.MainViewModel
 import dagger.android.support.AndroidSupportInjection
+import javax.inject.Inject
 
 class ProfileFragment : Fragment() {
 
@@ -24,6 +25,9 @@ class ProfileFragment : Fragment() {
     val viewModel: ProfileViewModel by activityViewModels {
         (requireActivity().applicationContext as App).getApplicationComponent().viewModelFactory()
     }
+
+    @Inject
+    lateinit var ui: ProfileUI
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -42,33 +46,8 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.apply {
-            profileBtnEdit.setOnClickListener {
-                val action = ProfileFragmentDirections.actionProfileFragmentToProfileEditFragment()
-                findNavController().navigate(action)
-            }
-            ivBack.setOnClickListener {
-                requireActivity().finish()
-            }
-            ivExit.setOnClickListener {
-                viewModel.logout()
-                requireActivity().finish()
-            }
-        }
-
-        viewModel.apply {
-            loadUser()
-            user.observe(viewLifecycleOwner) {
-                binding.profileDesc.text = it.bio
-                binding.profileName.text = it.name
-                binding.profileContacts.text = it.contacts
-            }
-            message.observe(viewLifecycleOwner) {
-                Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
-            }
-            isLoading.observe(viewLifecycleOwner) {
-                binding.profilePb.visibility = if (it) View.VISIBLE else View.GONE
-            }
+        ui.apply {
+            setup()
         }
     }
 

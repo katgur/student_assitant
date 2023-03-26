@@ -17,5 +17,13 @@
         android:id="@+id/profileEditFragment"
         android:name="com.example.student_assistant.ui.profile.ProfileEditFragment"
         android:label="fragment_profile_edit"
-        tools:layout="@layout/fragment_profile_edit" />
+        tools:layout="@layout/fragment_profile_edit" >
+        <action
+            android:id="@+id/action_profileEditFragment_to_profileParameterFragment"
+            app:destination="@id/profileParameterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileParameterFragment"
+        android:name="com.example.student_assistant.ui.profile.ProfileParameterFragment"
+        android:label="ProfileParameterFragment" />
 </navigation>

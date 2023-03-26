@@ -5,4 +5,5 @@ data class UserInfo(
     val name: String,
     val bio: String,
     val contacts: String,
+    val tags: List<String>,
 )

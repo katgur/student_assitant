@@ -10,7 +10,7 @@ class UserMapper @Inject constructor() {
         if (dto.isStudent == null || dto.bio == null || dto.contacts == null || dto.name == null) {
             return null
         }
-        return UserInfo(dto.isStudent, dto.name, dto.bio, dto.contacts)
+        return UserInfo(dto.isStudent, dto.name, dto.bio, dto.contacts, listOf())
     }
     fun mapToLoginInfo(dto: UserDB): LoginInfo {
         return LoginInfo(dto.email, "")

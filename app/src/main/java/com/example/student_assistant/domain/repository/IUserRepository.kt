@@ -11,6 +11,6 @@ interface IUserRepository {
     suspend fun login(info: LoginInfo): Result<Unit>
     suspend fun getCachedUser(): Result<LoginInfo>
     suspend fun getUser(): Result<UserInfo>
-    suspend fun updateUser(name: String, surname: String, bio: String): Result<Unit>
+    suspend fun updateUser(name: String, surname: String, bio: String, tags: List<String>): Result<Unit>
     suspend fun logout()
 }

@@ -32,10 +32,14 @@ class AuthMapper @Inject constructor() {
 
     fun map(info: UserInfo): UpdateUserRequest {
         val spl = info.name.split(' ')
-        return UpdateUserRequest(spl[0], spl[1], info.bio)
+        return UpdateUserRequest(spl[0], spl[1], info.bio, info.tags)
     }
 
     fun map(response: GetUserResponse): UserInfo {
-        return UserInfo(response.isStudent, response.name + " " + response.surname, "Пусто", response.contacts)
+        return UserInfo(response.isStudent,
+            response.name + " " + response.surname,
+            "Пусто",
+            response.contacts,
+            response.tags)
     }
 }

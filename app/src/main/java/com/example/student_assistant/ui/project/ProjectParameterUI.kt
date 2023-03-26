@@ -1,6 +1,5 @@
-package com.example.student_assistant.ui.parameter
+package com.example.student_assistant.ui.project
 
-import android.util.Log
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,8 +7,10 @@ import com.example.student_assistant.R
 import com.example.student_assistant.ui.parameter.adapter.ParameterAdapter
 import javax.inject.Inject
 
-class ParameterUI @Inject constructor(private val fragment: ParameterFragment,
-                                      private val adapter: ParameterAdapter) {
+class ProjectParameterUI @Inject constructor(
+    private val fragment: ProjectParameterFragment,
+    private val adapter: ParameterAdapter,
+) {
 
 
     fun navigate() {
