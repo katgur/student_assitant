@@ -1,5 +1,6 @@
 package com.example.student_assistant.ui.main.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,7 +30,14 @@ class CardAdapter @Inject constructor(diffCalculator: CardDiffCalculator) : List
             binding.apply {
                 iCardTvTitle.text = item.title
                 iCardTvText.text = item.description
-                iCardTvTime.text = item.status.replace(", ", "\n")
+                if (item.status.isNotBlank()) {
+                    val statuses = item.status.split(", ")
+                    iCardTvProjectStatus.text = statuses[1]
+                    iCardTvRecStatus.text = statuses[0].toLowerCase()
+                } else {
+                    iCardTvProjectStatus.visibility = View.GONE
+                    iCardTvRecStatus.visibility = View.GONE
+                }
                 root.setOnClickListener {
                     onItemClick?.invoke(item)
                 }
