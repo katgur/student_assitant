@@ -99,4 +99,33 @@ class ProjectRepository @Inject constructor(
             Result.failure(exc)
         }
     }
+
+    override suspend fun getTags(): Result<List<String>> {
+        return try {
+            val cachedUser = userDao.getUser()
+            if (cachedUser.isNotEmpty()) {
+                val tags = api.getTags().tags
+                Result.success(tags)
+            } else {
+                Result.failure(IllegalStateException("User is not authorized"))
+            }
+        } catch (exc: IllegalStateException) {
+            Result.failure(exc)
+        }
+    }
+
+    override suspend fun getRecommendedProjects(): Result<List<Card>> {
+        return try {
+            val cachedUser = userDao.getUser()
+            if (cachedUser.isNotEmpty()) {
+                val cachedLoginInfo = userMapper.mapToLoginInfo(cachedUser[0])
+                val projects = apiMapper.map(api.getRecommendedProjects(cachedLoginInfo.email))
+                Result.success(projects)
+            } else {
+                Result.failure(IllegalStateException("User is not authorized"))
+            }
+        } catch (exc: IllegalStateException) {
+            Result.failure(exc)
+        }
+    }
 }

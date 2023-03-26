@@ -1,17 +1,25 @@
 package com.example.student_assistant.ui.project
 
 import android.util.Log
+import android.widget.LinearLayout
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.student_assistant.ui.project.adapter.TagAdapter
 import javax.inject.Inject
 
 class ProjectDetailUI @Inject constructor(
     private val fragment: ProjectDetailFragment,
+    private val adapter: TagAdapter,
 ) {
 
     fun load() {
         val id = fragment.requireActivity().intent.extras?.getInt("id")
         if (id != null) {
             fragment.viewModel.setId(id)
+            if (id == -1) {
+                fragment.findNavController().navigate(ProjectDetailFragmentDirections.actionProjectDetailFragmentToProjectEditFragment())
+            }
         }
         fragment.binding.apply {
             detailsIvBack.setOnClickListener {
@@ -26,28 +34,23 @@ class ProjectDetailUI @Inject constructor(
         }
     }
 
+    fun setupRecycler() {
+        fragment.binding.apply {
+            detailsTagRv.adapter = adapter
+            detailsTagRv.layoutManager = LinearLayoutManager(fragment.requireContext(), RecyclerView.HORIZONTAL, false)
+        }
+    }
+
     fun observe() {
         fragment.viewModel.project.observe(fragment.viewLifecycleOwner) {
-            val projectStatus = when (it.projectStatus) {
-                "NOT_STARTED" -> "Не начат"
-                "IN_PROGRESS" -> "Начат"
-                "COMPLETED" -> "Заверешен"
-                else -> throw IllegalArgumentException()
-            }
-            val recStatus = when (it.recruitingStatus) {
-                "NOT_STARTED" -> "Не начат"
-                "IN_PROGRESS" -> "Начат"
-                "COMPLETED" -> "Заверешен"
-                else -> throw IllegalArgumentException()
-            }
             fragment.binding.apply {
-                detailsTvName.setText(it.title)
-                detailsTvTime.setText("С ${it.plannedStartOfWork} до ${it.plannedFinishOfWork}")
-                detailsTvDescriptionVal.setText(it.description)
-                detailsTvCountVal.setText(it.maxNumberOfStudents.toString())
-                detailsTvStatusVal.setText(projectStatus)
-                detailsTvRecStatusVal.setText(recStatus)
-                detailsTvRecDateVal.setText(it.applicationsDeadline)
+                detailsTvName.text = it.title
+                detailsTvTime.text = "С ${it.plannedStartOfWork} до ${it.plannedFinishOfWork}"
+                detailsTvDescriptionVal.text = it.description
+                detailsTvCountVal.text = it.maxNumberOfStudents.toString()
+                detailsTvStatusVal.text = it.projectStatus
+                detailsTvRecStatusVal.text = it.recruitingStatus
+                detailsTvRecDateVal.text = it.applicationsDeadline
             }
         }
     }

@@ -16,5 +16,18 @@
     <fragment
         android:id="@+id/projectEditFragment"
         android:name="com.example.student_assistant.ui.project.ProjectEditFragment"
-        android:label="ProjectEditFragment" />
+        android:label="ProjectEditFragment" >
+        <action
+            android:id="@+id/action_projectEditFragment_to_parameterFragment"
+            app:destination="@id/parameterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/parameterFragment"
+        android:name="com.example.student_assistant.ui.parameter.ParameterFragment"
+        android:label="fragment_parameters"
+        tools:layout="@layout/fragment_parameters" >
+        <argument
+            android:name="page"
+            app:argType="integer" />
+    </fragment>
 </navigation>

@@ -1,50 +1,37 @@
 package com.example.student_assistant.ui.project
 
+import android.util.Log
 import android.view.View
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.student_assistant.R
+import com.example.student_assistant.domain.entity.Parameter
+import com.example.student_assistant.ui.project.adapter.ProjectParametersAdapter
 import javax.inject.Inject
 
-class ProjectEditUI @Inject constructor(private val fragment: ProjectEditFragment) {
+class ProjectEditUI @Inject constructor(
+    private val fragment: ProjectEditFragment,
+    private val adapter: ProjectParametersAdapter,
+) {
 
     fun navigate() {
         val navController = fragment.findNavController()
-        val statuses = arrayOf("Не начат", "В процессе", "Закончен")
-        val adapter = ArrayAdapter(fragment.requireActivity(), android.R.layout.simple_spinner_dropdown_item, statuses)
         fragment.binding.apply {
-            projectEditNumberValue.max = 10
-            projectEditProjectStatusValue.adapter = adapter
-            projectEditRecStatusValue.adapter = adapter
             ivClose.setOnClickListener {
                 navController.popBackStack()
             }
         }
     }
-    
+
     fun setupHandlers() {
         fragment.binding.apply {
+            projectEditNumberValue.max = 10
             projectBtnSave.setOnClickListener {
-                val projectStatus = when (fragment.binding.projectEditProjectStatusValue.selectedItemId) {
-                    0L -> "NOT_STARTED"
-                    1L -> "IN_PROGRESS"
-                    2L -> "COMPLETED"
-                    else -> throw IllegalArgumentException()
-                }
-                val recStatus = when (fragment.binding.projectEditRecStatusValue.selectedItemId) {
-                    0L -> "NOT_STARTED"
-                    1L -> "IN_PROGRESS"
-                    2L -> "COMPLETED"
-                    else -> throw IllegalArgumentException()
-                }
-                fragment.viewModel.addProject(
+                fragment.viewModel.setProject(
                     fragment.binding.projectEditName.text.toString(),
                     fragment.binding.projectEditDesc.text.toString(),
                     fragment.binding.projectEditNumberValue.progress,
-                    recStatus,
-                    projectStatus,
                     fragment.binding.projectEditRecTo.text.toString(),
                     fragment.binding.projectEditFrom.text.toString(),
                     fragment.binding.projectEditTo.text.toString(),
@@ -84,6 +71,16 @@ class ProjectEditUI @Inject constructor(private val fragment: ProjectEditFragmen
             }
             message.observe(fragment.viewLifecycleOwner) {
                 Toast.makeText(fragment.requireContext(), it, Toast.LENGTH_LONG).show()
+            }
+            parameters.observe(fragment.viewLifecycleOwner) {
+                fragment.binding.apply {
+                    adapter.submitList(it)
+                    adapter.onItemClick = {
+                        fragment.findNavController().navigate(ProjectEditFragmentDirections.actionProjectEditFragmentToParameterFragment(it.page))
+                    }
+                    projectRv.adapter = adapter
+                    projectRv.layoutManager = LinearLayoutManager(fragment.requireContext())
+                }
             }
         }
     }

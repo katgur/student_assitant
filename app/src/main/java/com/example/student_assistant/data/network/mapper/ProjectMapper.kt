@@ -4,7 +4,6 @@ import com.example.student_assistant.data.network.entity.AddProjectRequest
 import com.example.student_assistant.data.network.entity.AddProjectResponse
 import com.example.student_assistant.data.network.entity.GetProjectResponse
 import com.example.student_assistant.data.network.entity.GetProjectsByEmailResponse
-import com.example.student_assistant.data.network.entity.SearchProjectsRequest
 import com.example.student_assistant.data.network.entity.UpdateProjectRequest
 import com.example.student_assistant.domain.entity.Card
 import com.example.student_assistant.domain.entity.CreateProjectInfo
@@ -23,6 +22,7 @@ class ProjectMapper @Inject constructor() {
             info.applicationsDeadline,
             info.plannedStartOfWork,
             info.plannedFinishOfWork,
+            info.tags,
         )
     }
 
@@ -57,6 +57,7 @@ class ProjectMapper @Inject constructor() {
             response.applicationsDeadline,
             response.plannedStartOfWork,
             response.plannedFinishOfWork,
+            response.tags,
         )
     }
 

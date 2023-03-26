@@ -17,4 +17,8 @@ interface IProjectRepository {
     suspend fun searchProject(substring: String): Result<List<Card>>
 
     suspend fun getProjects(): Result<List<Card>>
+
+    suspend fun getTags(): Result<List<String>>
+
+    suspend fun getRecommendedProjects(): Result<List<Card>>
 }

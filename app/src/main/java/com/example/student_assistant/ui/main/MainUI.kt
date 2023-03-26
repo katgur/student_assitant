@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 class MainUI @Inject constructor(
     private val fragment: MainFragment,
-    private val adapter: CardAdapter
+    private val adapter: CardAdapter,
 ) {
 
     fun navigate() {
@@ -61,11 +61,11 @@ class MainUI @Inject constructor(
                 mainIvMore.visibility = View.VISIBLE
                 mainTitle.visibility = View.VISIBLE
                 mainAbl.setExpanded(true)
-                fragment.viewModel.load()
+                fragment.viewModel.setPage(R.id.rb_all)
                 return@setOnCloseListener false
             }
             mainRgTabs.setOnCheckedChangeListener { _, i ->
-                fragment.viewModel.load(i == R.id.rb_rec)
+                fragment.viewModel.setPage(i)
             }
         }
     }
@@ -78,11 +78,9 @@ class MainUI @Inject constructor(
                 }
             }
             cards.observe(fragment.viewLifecycleOwner) { items -> adapter.submitList(items) }
-            isSwapped.observe(fragment.viewLifecycleOwner) {
-                if (it) {
-                    fragment.binding.mainRgTabs.check(R.id.rb_rec)
-                } else {
-                    fragment.binding.mainRgTabs.check(R.id.rb_all)
+            page.observe(fragment.viewLifecycleOwner) {
+                if (fragment.binding.mainRgTabs.checkedRadioButtonId != it) {
+                    fragment.binding.mainRgTabs.check(it)
                 }
             }
             isLoading.observe(fragment.viewLifecycleOwner) {

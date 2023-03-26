@@ -25,4 +25,6 @@ data class GetProjectResponse(
     val plannedStartOfWork: String,
     @SerializedName("planned_finish_of_work")
     val plannedFinishOfWork: String,
+    @SerializedName("tags")
+    val tags: List<String>,
 )

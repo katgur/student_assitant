@@ -9,4 +9,5 @@ data class CreateProjectInfo(
     val applicationsDeadline: String,
     val plannedStartOfWork: String,
     val plannedFinishOfWork: String,
+    val tags: List<String>,
 )

@@ -2,30 +2,97 @@ package com.example.student_assistant.ui.project
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
-import com.example.student_assistant.domain.entity.Card
+import com.example.student_assistant.R
 import com.example.student_assistant.domain.entity.CreateProjectInfo
+import com.example.student_assistant.domain.entity.Parameter
 import com.example.student_assistant.domain.entity.Project
-import com.example.student_assistant.domain.entity.Status
 import com.example.student_assistant.domain.repository.IProjectRepository
+import com.example.student_assistant.ui.BaseViewModel
 import kotlinx.coroutines.launch
-import java.util.UUID
 import javax.inject.Inject
 
 class ProjectViewModel @Inject constructor(
     private val repository: IProjectRepository,
-) : ViewModel() {
+) : BaseViewModel() {
 
     private val _project = MutableLiveData<Project>()
     val project: LiveData<Project> = _project
-    private val _message = MutableLiveData<String>()
-    val message: LiveData<String> = _message
     private val _id = MutableLiveData<Int>()
     val id: LiveData<Int> = _id
     private val _updated = MutableLiveData<Boolean>()
     val updated: LiveData<Boolean> = _updated
+
+    val list = listOf("Статус проекта", "Статус набора", "Тэги")
+    val statuses = listOf("Не начат", "Начат", "Завершен")
+    val pages = listOf(R.id.param_project_status_rb, R.id.param_rec_status_rb, R.id.param_tags_rb)
+    private var tagList = MutableLiveData<List<String>>()
+
+    private val _parameters = MutableLiveData<List<Parameter>>()
+    val parameters: LiveData<List<Parameter>> = _parameters
+    private val _page = MutableLiveData<Int>()
+    val page: LiveData<Int> = _page
+    private val _parameter = MediatorLiveData<Parameter>()
+    val parameter: LiveData<Parameter> = _parameter
+
+    init {
+        loadTagList()
+        page.observeForever {
+            _parameter.value = if (it == R.id.param_project_status_rb) {
+                _parameters.value?.get(0)
+            } else if (it == R.id.param_rec_status_rb) {
+                _parameters.value?.get(1)
+            } else if (it == R.id.param_tags_rb) {
+                _parameters.value?.get(2)
+            } else {
+                throw IllegalStateException()
+            }
+        }
+    }
+
+    private fun loadTagList() {
+        suspendableLaunch {
+            val result = repository.getTags()
+            if (result.isSuccess) {
+                tagList.postValue(result.getOrNull())
+                _parameters.postValue(
+                    list.mapIndexed { index, name ->
+                        if (index < 2) {
+                            Parameter(name, statuses, mutableListOf(0), pages[index])
+                        } else {
+                            Parameter(name, result.getOrNull()!!, mutableListOf(), pages[index])
+                        }
+                    }
+                )
+            } else {
+                _message.postValue(result.exceptionOrNull()?.message)
+            }
+        }
+    }
+
+    fun load() {
+        _parameter.addSource(page) {
+            if (it == R.id.param_project_status_rb) {
+                _parameters.value?.get(0)
+            } else if (it == R.id.param_rec_status_rb) {
+                _parameters.value?.get(1)
+            } else if (it == R.id.param_tags_rb) {
+                _parameters.value?.get(2)
+            }
+        }
+        _parameter.addSource(parameters) {
+            if (page.value == R.id.param_project_status_rb) {
+                it.get(0)
+            } else if (page.value == R.id.param_rec_status_rb) {
+                it.get(1)
+            } else if (page.value == R.id.param_tags_rb) {
+                it.get(2)
+            }
+        }
+    }
 
     fun setId(id: Int) {
         _id.value = id
@@ -41,37 +108,63 @@ class ProjectViewModel @Inject constructor(
         }
     }
 
-    fun addProject(
+    fun setChosenItem(parameter: Parameter) {
+        _parameters.value = _parameters.value?.map {
+            if (it.name == parameter.name) {
+                parameter
+            } else {
+                it
+            }
+        }
+    }
+    
+    fun setPage(page: Int) {
+        _page.value = page
+    }
+
+    fun reset() {
+        _parameters.value = _parameters.value?.map {
+            it.copy(chosen = mutableListOf())
+        }
+    }
+
+    fun setProject(
         title: String,
         description: String,
         maxNumberOfStudents: Int,
-        recruitingStatus: String,
-        projectStatus: String,
         applicationsDeadline: String,
         plannedStartOfWork: String,
         plannedFinishOfWork: String,
     ) {
-        if (id.value != null && id.value != -1) {
+        val values = _parameters.value?.map { parameter ->
+            parameter.chosen.map { index ->
+                parameter.values[index]
+            }
+        } ?: throw IllegalStateException()
+        if (id.value != null
+            && id.value != -1) {
             update(
                 id.value!!,
                 title,
                 description,
-                recruitingStatus,
-                projectStatus,
+                values[1][0],
+                values[0][0],
                 applicationsDeadline,
                 plannedStartOfWork,
                 plannedFinishOfWork,
+                values[2],
             )
         } else {
             add(
                 title,
                 description,
                 maxNumberOfStudents,
-                recruitingStatus,
-                projectStatus,
+                values[1][0],
+                values[0][0],
                 applicationsDeadline,
                 plannedStartOfWork,
                 plannedFinishOfWork,
+                values[2],
             )
         }
     }
@@ -85,6 +178,7 @@ class ProjectViewModel @Inject constructor(
         applicationsDeadline: String,
         plannedStartOfWork: String,
         plannedFinishOfWork: String,
+        tags: List<String>,
     ) {
         viewModelScope.launch {
             val result = repository.updateProject(
@@ -101,6 +195,7 @@ class ProjectViewModel @Inject constructor(
                     applicationsDeadline,
                     plannedStartOfWork,
                     plannedFinishOfWork,
+                    tags
                 )
             )
             if (result.isSuccess) {
@@ -120,6 +215,7 @@ class ProjectViewModel @Inject constructor(
         applicationsDeadline: String,
         plannedStartOfWork: String,
         plannedFinishOfWork: String,
+        tags: List<String>,
     ) {
         viewModelScope.launch {
             val result = repository.addProject(
@@ -132,6 +228,7 @@ class ProjectViewModel @Inject constructor(
                     applicationsDeadline,
                     plannedStartOfWork,
                     plannedFinishOfWork,
+                    tags,
                 )
             )
             if (result.isSuccess) {

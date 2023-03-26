@@ -1,10 +1,9 @@
-package com.example.student_assistant.ui.parameter.adapter
+package com.example.student_assistant.ui.project.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.student_assistant.domain.entity.Interest
 import javax.inject.Inject
 
-class ParameterDiffCalculator @Inject constructor() : DiffUtil.ItemCallback<String>() {
+class TagDiffCalculator @Inject constructor() : DiffUtil.ItemCallback<String>() {
     override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
         return oldItem == newItem
     }

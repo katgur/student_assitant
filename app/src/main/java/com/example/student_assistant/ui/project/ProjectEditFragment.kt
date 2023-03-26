@@ -2,18 +2,13 @@ package com.example.student_assistant.ui.project
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.example.student_assistant.App
-import com.example.student_assistant.databinding.FragmentParametersBinding
 import com.example.student_assistant.databinding.FragmentProjectEditBinding
-import com.example.student_assistant.ui.main.MainViewModel
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 

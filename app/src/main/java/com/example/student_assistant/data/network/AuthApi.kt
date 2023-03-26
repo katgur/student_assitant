@@ -5,6 +5,7 @@ import com.example.student_assistant.data.network.entity.AddProjectResponse
 import com.example.student_assistant.data.network.entity.DeleteProjectRequest
 import com.example.student_assistant.data.network.entity.GetProjectResponse
 import com.example.student_assistant.data.network.entity.GetProjectsByEmailResponse
+import com.example.student_assistant.data.network.entity.GetTagsResponse
 import com.example.student_assistant.data.network.entity.GetUserResponse
 import com.example.student_assistant.data.network.entity.LoginRequest
 import com.example.student_assistant.data.network.entity.MessageResponse
@@ -55,4 +56,10 @@ interface AuthApi {
 
     @POST("/search-projects")
     suspend fun searchProjects(@Body request: SearchProjectsRequest): GetProjectsByEmailResponse
+
+    @GET("/tags")
+    suspend fun getTags(): GetTagsResponse
+
+    @GET("/recommend")
+    suspend fun getRecommendedProjects(@Query("email") email: String): GetProjectsByEmailResponse
 }

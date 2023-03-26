@@ -45,7 +45,13 @@ class ProjectDetailFragment : Fragment() {
 
         ui.apply {
             load()
+            setupRecycler()
             observe()
         }
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 }

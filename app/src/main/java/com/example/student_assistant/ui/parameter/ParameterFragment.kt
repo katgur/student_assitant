@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.example.student_assistant.App
 import com.example.student_assistant.databinding.FragmentParametersBinding
 import com.example.student_assistant.ui.filter.FilterViewModel
 import com.example.student_assistant.ui.main.MainViewModel
+import com.example.student_assistant.ui.project.ProjectViewModel
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -19,7 +21,7 @@ class ParameterFragment : Fragment() {
     private var _binding: FragmentParametersBinding? = null
 
     val binding get() = _binding!!
-    val viewModel: FilterViewModel by viewModels {
+    val viewModel: ProjectViewModel by activityViewModels {
         (requireContext().applicationContext as App).getApplicationComponent().viewModelFactory()
     }
 
@@ -45,8 +47,8 @@ class ParameterFragment : Fragment() {
 
         ui.apply {
             navigate()
-            observeViewModel()
             setupHandlers()
+            observeViewModel()
         }
     }
 
