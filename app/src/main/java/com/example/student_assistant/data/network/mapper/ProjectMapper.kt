@@ -15,7 +15,7 @@ class ProjectMapper @Inject constructor() {
     private fun mapStatusToEnum(status: String): String {
         return when (status) {
             "Не начат" -> "NOT_STARTED"
-            "Начат" -> "STARTED"
+            "Начат" -> "IN_PROGRESS"
             "Завершен" -> "FINISHED"
             else -> throw IllegalStateException()
         }
@@ -24,7 +24,7 @@ class ProjectMapper @Inject constructor() {
     private fun mapEnumToStatus(enum: String): String {
         return when (enum) {
             "NOT_STARTED" -> "Не начат"
-            "STARTED" -> "Начат"
+            "IN_PROGRESS" -> "Начат"
             "FINISHED" -> "Завершен"
             else -> throw IllegalStateException()
         }

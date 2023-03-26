@@ -94,6 +94,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/profile_rv"
+        android:layout_marginHorizontal="24dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

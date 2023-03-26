@@ -79,6 +79,7 @@ class ProjectViewModel @Inject constructor(
             viewModelScope.launch {
                 val result = repository.getProject(id)
                 if (result.isSuccess) {
+                    Log.d("kekp", result.getOrNull().toString())
                     _project.postValue(result.getOrNull())
                 } else {
                     _message.postValue(result.exceptionOrNull()?.message)

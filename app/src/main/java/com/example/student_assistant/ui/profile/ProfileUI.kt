@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.student_assistant.ui.project.adapter.TagAdapter
 import javax.inject.Inject
 
@@ -26,7 +27,7 @@ class ProfileUI @Inject constructor(
                 fragment.requireActivity().finish()
             }
             profileRv.adapter = adapter
-            profileRv.layoutManager = LinearLayoutManager(fragment.requireContext())
+            profileRv.layoutManager = LinearLayoutManager(fragment.requireContext(), RecyclerView.HORIZONTAL, false)
         }
 
         fragment.viewModel.apply {

@@ -2,6 +2,7 @@ package com.example.student_assistant.ui.project
 
 import android.util.Log
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,7 +19,8 @@ class ProjectDetailUI @Inject constructor(
         if (id != null) {
             fragment.viewModel.setId(id)
             if (id == -1) {
-                fragment.findNavController().navigate(ProjectDetailFragmentDirections.actionProjectDetailFragmentToProjectEditFragment())
+                fragment.findNavController()
+                    .navigate(ProjectDetailFragmentDirections.actionProjectDetailFragmentToProjectEditFragment())
             }
         }
         fragment.binding.apply {
@@ -27,7 +29,8 @@ class ProjectDetailUI @Inject constructor(
             }
             detailsIvEdit.setOnClickListener {
                 if (id != null) {
-                    val action = ProjectDetailFragmentDirections.actionProjectDetailFragmentToProjectEditFragment()
+                    val action =
+                        ProjectDetailFragmentDirections.actionProjectDetailFragmentToProjectEditFragment()
                     fragment.findNavController().navigate(action)
                 }
             }
@@ -40,22 +43,30 @@ class ProjectDetailUI @Inject constructor(
     fun setupRecycler() {
         fragment.binding.apply {
             detailsTagRv.adapter = adapter
-            detailsTagRv.layoutManager = LinearLayoutManager(fragment.requireContext(), RecyclerView.HORIZONTAL, false)
+            detailsTagRv.layoutManager =
+                LinearLayoutManager(fragment.requireContext(), RecyclerView.HORIZONTAL, false)
         }
     }
 
     fun observe() {
-        fragment.viewModel.project.observe(fragment.viewLifecycleOwner) {
-            fragment.binding.apply {
-                detailsTvName.text = it.title
-                detailsTvTime.text = "С ${it.plannedStartOfWork} до ${it.plannedFinishOfWork}"
-                detailsTvDescriptionVal.text = it.description
-                detailsTvCountVal.text = it.maxNumberOfStudents.toString()
-                detailsTvStatusVal.text = it.projectStatus
-                detailsTvRecStatusVal.text = it.recruitingStatus
-                detailsTvRecDateVal.text = it.applicationsDeadline
+        fragment.viewModel.apply {
+            project.observe(fragment.viewLifecycleOwner) {
+                fragment.binding.apply {
+                    detailsTvName.text = it.title
+                    detailsTvTime.text = "С ${it.plannedStartOfWork} до ${it.plannedFinishOfWork}"
+                    detailsTvDescriptionVal.text = it.description
+                    detailsTvCountVal.text = it.maxNumberOfStudents.toString()
+                    detailsTvStatusVal.text = it.projectStatus
+                    detailsTvRecStatusVal.text = it.recruitingStatus
+                    detailsTvRecDateVal.text = it.applicationsDeadline
+                }
+                adapter.submitList(it.tags)
             }
-            adapter.submitList(it.tags)
+            message.observe(fragment.viewLifecycleOwner) {
+                if (it != null) {
+                    Toast.makeText(fragment.requireContext(), it, Toast.LENGTH_LONG).show()
+                }
+            }
         }
     }
 }
