@@ -16,7 +16,6 @@ class ProjectEditUI @Inject constructor(
 ) {
 
     fun navigate() {
-        val navController = fragment.findNavController()
         fragment.binding.apply {
             ivClose.setOnClickListener {
                 fragment.requireActivity().finish()
@@ -45,6 +44,7 @@ class ProjectEditUI @Inject constructor(
 
     fun setupViewModel() {
         fragment.viewModel.apply {
+            setId()
             id.observe(fragment.viewLifecycleOwner) {
                 if (it != null && it != -1) {
                     fragment.binding.apply {

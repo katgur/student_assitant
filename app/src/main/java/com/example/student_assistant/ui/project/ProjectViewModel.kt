@@ -73,7 +73,7 @@ class ProjectViewModel @Inject constructor(
         }
     }
 
-    fun setId(id: Int) {
+    fun setId(id: Int = _id.value!!) {
         _id.value = id
         if (id != -1) {
             viewModelScope.launch {

@@ -35,10 +35,6 @@ class ProfileViewModel @Inject constructor(
     private val _parameter = MediatorLiveData<Parameter>()
     val parameter: LiveData<Parameter> = _parameter
 
-    init {
-        loadTagList()
-    }
-
     fun setChosenItem(parameter: Parameter) {
         _parameters.value = _parameters.value?.map {
             if (it.name == parameter.name) {
@@ -55,11 +51,18 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
-    private fun loadTagList() {
+    private fun loadTagList(user: UserInfo?) {
+        if (user == null) return
         suspendableLaunch {
             val result = projectRepository.getTags()
             if (result.isSuccess) {
-                _parameters.postValue(listOf(Parameter(list[0], result.getOrNull()!!, mutableSetOf(), pages[0])))
+                val tagList = result.getOrNull()!!
+                val indexes = List(tagList.size) { i -> i }.filter { user.tags.contains(tagList[it]) }.toMutableSet()
+                _parameters.postValue(listOf(Parameter(
+                    list[0],
+                    tagList,
+                    indexes,
+                    pages[0])))
             } else {
                 _message.postValue(result.exceptionOrNull()?.message)
             }
@@ -87,6 +90,7 @@ class ProfileViewModel @Inject constructor(
             val result = userRepository.getUser()
             if (result.isSuccess) {
                 _user.postValue(result.getOrNull())
+                loadTagList(result.getOrNull())
             } else {
                 _message.postValue(result.exceptionOrNull()?.message)
             }

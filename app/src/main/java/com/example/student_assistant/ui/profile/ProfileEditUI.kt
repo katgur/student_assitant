@@ -1,5 +1,6 @@
 package com.example.student_assistant.ui.profile
 
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
@@ -25,8 +26,13 @@ class ProfileEditUI @Inject constructor(
                 fragment.binding.profileEditPb.visibility = if (it) View.VISIBLE else View.GONE
             }
             parameters.observe(fragment.viewLifecycleOwner) {
+                adapter.submitList(it)
+            }
+            user.observe(fragment.viewLifecycleOwner) {
                 fragment.binding.apply {
-                    adapter.submitList(it)
+                    profileEditName.setText(it.name)
+                    profileEditSurname.setText(it.name)
+                    profileEditDesc.setText(it.bio)
                 }
             }
         }
