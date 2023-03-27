@@ -30,10 +30,13 @@ class CardAdapter @Inject constructor(diffCalculator: CardDiffCalculator) : List
             binding.apply {
                 iCardTvTitle.text = item.title
                 iCardTvText.text = item.description
-                if (item.status.isNotBlank()) {
-                    val statuses = item.status.split(", ")
+                val statuses = item.status.split(", ")
+                if (statuses.size == 2) {
                     iCardTvProjectStatus.text = statuses[1]
                     iCardTvRecStatus.text = statuses[0].toLowerCase()
+                } else if (item.status.isNotBlank() && statuses.size == 1) {
+                    iCardTvRecStatus.text = statuses[0]
+                    iCardTvProjectStatus.visibility = View.GONE
                 } else {
                     iCardTvProjectStatus.visibility = View.GONE
                     iCardTvRecStatus.visibility = View.GONE
