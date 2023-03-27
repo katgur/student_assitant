@@ -1,6 +1,7 @@
 package com.example.student_assistant.ui.project
 
 import android.util.Log
+import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
@@ -61,6 +62,11 @@ class ProjectDetailUI @Inject constructor(
                     detailsTvStatusVal.text = it.projectStatus
                     detailsTvRecStatusVal.text = it.recruitingStatus
                     detailsTvRecDateVal.text = it.applicationsDeadline
+                    if (it.applicationsDeadline.isBlank()) {
+                        detailsTvTime.visibility = View.GONE
+                        detailsTvRecDateVal.visibility = View.GONE
+                        detailsTvRecDate.visibility = View.GONE
+                    }
                 }
                 adapter.submitList(it.tags)
             }
