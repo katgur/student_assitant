@@ -54,7 +54,6 @@ class ProjectDetailUI @Inject constructor(
             isAuthor.observe(fragment.viewLifecycleOwner) {
                 fragment.binding.apply {
                     detailsIvEdit.visibility = if (it) View.VISIBLE else View.GONE
-                    detailsJoin.visibility = if (!it) View.VISIBLE else View.GONE
                 }
             }
             project.observe(fragment.viewLifecycleOwner) {
@@ -75,6 +74,7 @@ class ProjectDetailUI @Inject constructor(
                             detailsTvRecDate.visibility = View.GONE
                         }
                         adapter.submitList(it.tags)
+                        detailsJoin.visibility = if (it.applicationsDeadline.isEmpty()) View.GONE else View.VISIBLE
                     }
                 }
             }
