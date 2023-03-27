@@ -79,6 +79,10 @@ class ProfileViewModel @Inject constructor(
             if (result.isSuccess) {
                 _message.postValue("Your profile data is changed successfully")
                 _isUpdated.postValue(true)
+                val oldUser = _user.value
+                if (oldUser != null) {
+                    _user.postValue(UserInfo(oldUser.isStudent, name + " " + surname, bio, oldUser.contacts, tags))
+                }
             } else {
                 _message.postValue(result.exceptionOrNull()?.message)
             }

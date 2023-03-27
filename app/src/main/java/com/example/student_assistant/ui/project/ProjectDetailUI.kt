@@ -54,7 +54,7 @@ class ProjectDetailUI @Inject constructor(
             isAuthor.observe(fragment.viewLifecycleOwner) {
                 fragment.binding.apply {
                     detailsIvEdit.visibility = if (it) View.VISIBLE else View.GONE
-                    detailsJoin.visibility = if (it) View.VISIBLE else View.GONE
+                    detailsJoin.visibility = if (!it) View.VISIBLE else View.GONE
                 }
             }
             project.observe(fragment.viewLifecycleOwner) {

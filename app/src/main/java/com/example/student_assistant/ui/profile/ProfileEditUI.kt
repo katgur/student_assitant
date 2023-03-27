@@ -30,8 +30,9 @@ class ProfileEditUI @Inject constructor(
             }
             user.observe(fragment.viewLifecycleOwner) {
                 fragment.binding.apply {
-                    profileEditName.setText(it.name)
-                    profileEditSurname.setText(it.name)
+                    val nameSpl = it.name.split(' ')
+                    profileEditName.setText(nameSpl[0])
+                    profileEditSurname.setText(nameSpl[1])
                     profileEditDesc.setText(it.bio)
                 }
             }

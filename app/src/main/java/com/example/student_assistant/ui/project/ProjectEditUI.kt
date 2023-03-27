@@ -94,6 +94,7 @@ class ProjectEditUI @Inject constructor(
                     fragment.binding.apply {
                         projectEditNumber.visibility = View.GONE
                         projectEditNumberValue.visibility = View.GONE
+                        projectEditTvNumberValue.visibility = View.GONE
                     }
                 }
             }
