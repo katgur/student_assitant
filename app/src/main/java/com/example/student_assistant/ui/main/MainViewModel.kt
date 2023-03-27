@@ -61,7 +61,6 @@ class MainViewModel(
                 it
             }
         }
-        Log.d("kek", _parameters.value?.joinToString { it.toString() } ?: "null")
     }
 
     fun setPage(value: Int) {
@@ -71,11 +70,22 @@ class MainViewModel(
                 projectRepository.getProjects()
             } else if (value == R.id.rb_rec) {
                 projectRepository.getRecommendedProjects()
+            } else if (value == R.id.rb_apply) {
+                projectRepository.getProjects()
             } else {
                 Result.failure(IllegalStateException())
             }
             if (result.isSuccess) {
-                _cards.postValue(result.getOrNull())
+                val list = if (value == R.id.rb_all) {
+                    result.getOrNull()?.filter { it.status.isBlank() || it.status.contains(",") }
+                } else if (value == R.id.rb_apply) {
+                    result.getOrNull()?.filter { it.status.contains("Заявка") }
+                } else if (value == R.id.rb_rec) {
+                    result.getOrNull()
+                } else {
+                    listOf()
+                }
+                _cards.postValue(list!!)
             } else {
                 _message.postValue(result.exceptionOrNull()?.message)
             }
