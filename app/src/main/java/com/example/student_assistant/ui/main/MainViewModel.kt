@@ -32,13 +32,13 @@ class MainViewModel(
 
     init {
         _parameters.value = names.mapIndexed {index, name ->
-            Parameter(name, statuses, mutableListOf(0), pages[index])
+            Parameter(name, statuses, mutableSetOf(0), pages[index])
         }
     }
 
     fun reset() {
         _parameters.value = _parameters.value?.map {
-            it.copy(chosen = mutableListOf())
+            it.copy(chosen = mutableSetOf(0))
         }
     }
 

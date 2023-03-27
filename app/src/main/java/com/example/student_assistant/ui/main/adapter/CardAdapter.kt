@@ -35,8 +35,8 @@ class CardAdapter @Inject constructor(diffCalculator: CardDiffCalculator) : List
                     iCardTvProjectStatus.text = statuses[1]
                     iCardTvRecStatus.text = statuses[0].toLowerCase()
                 } else if (item.status.isNotBlank() && statuses.size == 1) {
-                    iCardTvRecStatus.text = statuses[0]
-                    iCardTvProjectStatus.visibility = View.GONE
+                    iCardTvProjectStatus.text = statuses[0]
+                    iCardTvRecStatus.visibility = View.GONE
                 } else {
                     iCardTvProjectStatus.visibility = View.GONE
                     iCardTvRecStatus.visibility = View.GONE

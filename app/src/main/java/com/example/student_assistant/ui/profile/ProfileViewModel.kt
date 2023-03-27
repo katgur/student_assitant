@@ -51,7 +51,7 @@ class ProfileViewModel @Inject constructor(
 
     fun reset() {
         _parameters.value = _parameters.value?.map {
-            it.copy(chosen = mutableListOf())
+            it.copy(chosen = mutableSetOf())
         }
     }
 
@@ -59,7 +59,7 @@ class ProfileViewModel @Inject constructor(
         suspendableLaunch {
             val result = projectRepository.getTags()
             if (result.isSuccess) {
-                _parameters.postValue(listOf(Parameter(list[0], result.getOrNull()!!, mutableListOf(), pages[0])))
+                _parameters.postValue(listOf(Parameter(list[0], result.getOrNull()!!, mutableSetOf(), pages[0])))
             } else {
                 _message.postValue(result.exceptionOrNull()?.message)
             }

@@ -61,9 +61,9 @@ class ProjectViewModel @Inject constructor(
                 _parameters.postValue(
                     list.mapIndexed { index, name ->
                         if (index < 2) {
-                            Parameter(name, statuses, mutableListOf(0), pages[index])
+                            Parameter(name, statuses, mutableSetOf(0), pages[index])
                         } else {
-                            Parameter(name, result.getOrNull()!!, mutableListOf(), pages[index])
+                            Parameter(name, result.getOrNull()!!, mutableSetOf(), pages[index])
                         }
                     }
                 )
@@ -103,7 +103,7 @@ class ProjectViewModel @Inject constructor(
 
     fun reset() {
         _parameters.value = _parameters.value?.map {
-            it.copy(chosen = mutableListOf())
+            it.copy(chosen = mutableSetOf())
         }
     }
 

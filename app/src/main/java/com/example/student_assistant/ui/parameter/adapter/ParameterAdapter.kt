@@ -31,7 +31,7 @@ class ParameterAdapter @Inject constructor(diffCalculator: ParameterValueDiffCal
             ParameterValue(
                 index,
                 value,
-                parameter.chosen.map { i -> parameter.values[i] }.contains(value),
+                parameter.chosen.contains(index),
                 parameter.page
             )
         }
@@ -64,9 +64,9 @@ class ParameterAdapter @Inject constructor(diffCalculator: ParameterValueDiffCal
                     itemFilterCb.isChecked = item.isSelected
                     itemFilterCb.setOnCheckedChangeListener { _, b ->
                         if (b) {
-                            parameter.chosen.add(item.id)
+                            parameter.chosen.add(adapterPosition)
                         } else {
-                            parameter.chosen.remove(item.id)
+                            parameter.chosen.remove(adapterPosition)
                         }
                         onClick?.invoke(parameter)
                     }
