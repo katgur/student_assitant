@@ -1,13 +1,20 @@
 package com.example.student_assistant.ui.project
 
+import android.app.DatePickerDialog
 import android.util.Log
 import android.view.View
+import android.widget.EditText
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.student_assistant.R
-import com.example.student_assistant.domain.entity.Parameter
 import com.example.student_assistant.ui.project.adapter.ProjectParametersAdapter
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.util.Calendar
+import java.util.Date
+import java.util.GregorianCalendar
+import java.util.Locale
 import javax.inject.Inject
 
 class ProjectEditUI @Inject constructor(
@@ -28,17 +35,41 @@ class ProjectEditUI @Inject constructor(
             projectEditNumberValue.max = 10
             projectBtnSave.setOnClickListener {
                 fragment.viewModel.setProject(
-                    fragment.binding.projectEditName.text.toString(),
-                    fragment.binding.projectEditDesc.text.toString(),
-                    fragment.binding.projectEditNumberValue.progress,
-                    fragment.binding.projectEditRecTo.text.toString(),
-                    fragment.binding.projectEditFrom.text.toString(),
-                    fragment.binding.projectEditTo.text.toString(),
+                    projectEditName.text.toString(),
+                    projectEditDesc.text.toString(),
+                    projectEditNumberValue.progress,
+                    projectEditRecTo.text.toString(),
+                    projectEditFrom.text.toString(),
+                    projectEditTo.text.toString(),
                 )
             }
             projectBtnDelete.setOnClickListener {
                 fragment.viewModel.deleteProject()
             }
+            setupDatePicker(projectEditFrom)
+            setupDatePicker(projectEditTo)
+            setupDatePicker(projectEditRecTo)
+        }
+    }
+
+    private fun setupDatePicker(editText: EditText) {
+        editText.setOnClickListener {
+            val dateAndTime = Calendar.getInstance()
+            val d = DatePickerDialog.OnDateSetListener { _, y, m, d ->
+                val date = Date(Calendar.getInstance().apply {
+                    set(Calendar.YEAR, y)
+                    set(Calendar.MONTH, m)
+                    set(Calendar.DATE, d)
+                }.time.time)
+                val formatter = SimpleDateFormat("dd.MM.yyyy",  Locale("ru"))
+                editText.setText(formatter.format(date))
+            }
+            DatePickerDialog(
+                fragment.requireContext(), d,
+                dateAndTime.get(Calendar.YEAR),
+                dateAndTime.get(Calendar.MONTH),
+                dateAndTime.get(Calendar.DAY_OF_MONTH),
+            ).show()
         }
     }
 
