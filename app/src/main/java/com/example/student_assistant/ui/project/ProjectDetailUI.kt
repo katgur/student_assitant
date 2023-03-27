@@ -59,22 +59,24 @@ class ProjectDetailUI @Inject constructor(
             }
             project.observe(fragment.viewLifecycleOwner) {
                 fragment.binding.apply {
-                    detailsTvName.text = it.title
-                    detailsTvTime.text = "С ${it.plannedStartOfWork} до ${it.plannedFinishOfWork}"
-                    detailsTvDescriptionVal.text = it.description
-                    detailsTvAuthorVal.text = it.author
-                    detailsTvCurCountVal.text = it.currentNumberOfStudents.toString()
-                    detailsTvCountVal.text = it.maxNumberOfStudents.toString()
-                    detailsTvStatusVal.text = it.projectStatus
-                    detailsTvRecStatusVal.text = it.recruitingStatus
-                    detailsTvRecDateVal.text = it.applicationsDeadline
-                    if (it.applicationsDeadline.isBlank()) {
-                        detailsTvTime.visibility = View.GONE
-                        detailsTvRecDateVal.visibility = View.GONE
-                        detailsTvRecDate.visibility = View.GONE
+                    if (it != null) {
+                        detailsTvName.text = it.title
+                        detailsTvTime.text = "С ${it.plannedStartOfWork} до ${it.plannedFinishOfWork}"
+                        detailsTvDescriptionVal.text = it.description
+                        detailsTvAuthorVal.text = it.author
+                        detailsTvCurCountVal.text = it.currentNumberOfStudents.toString()
+                        detailsTvCountVal.text = it.maxNumberOfStudents.toString()
+                        detailsTvStatusVal.text = it.projectStatus
+                        detailsTvRecStatusVal.text = it.recruitingStatus
+                        detailsTvRecDateVal.text = it.applicationsDeadline
+                        if (it.applicationsDeadline.isBlank()) {
+                            detailsTvTime.visibility = View.GONE
+                            detailsTvRecDateVal.visibility = View.GONE
+                            detailsTvRecDate.visibility = View.GONE
+                        }
+                        adapter.submitList(it.tags)
                     }
                 }
-                adapter.submitList(it.tags)
             }
             message.observe(fragment.viewLifecycleOwner) {
                 if (it != null) {

@@ -19,8 +19,8 @@ class ProjectViewModel @Inject constructor(
     private val repository: IProjectRepository,
 ) : BaseViewModel() {
 
-    private val _project = MutableLiveData<Project>()
-    val project: LiveData<Project> = _project
+    private val _project = MutableLiveData<Project?>()
+    val project: LiveData<Project?> = _project
     private val _id = MutableLiveData<Int>()
     val id: LiveData<Int> = _id
     private val _updated = MutableLiveData<Boolean>()
@@ -88,6 +88,8 @@ class ProjectViewModel @Inject constructor(
                     _message.postValue(result.exceptionOrNull()?.message)
                 }
             }
+        } else {
+            _project.postValue(null)
         }
     }
 

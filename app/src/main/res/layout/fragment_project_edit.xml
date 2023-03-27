@@ -114,6 +114,14 @@
             android:text="Количество участников"
             android:textAppearance="@style/TextAppearance.StudentAssistant.SmallTitle.Neutral90" />
 
+        <TextView
+            android:id="@+id/project_edit_tv_number_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:text="0"
+            android:textAppearance="@style/TextAppearance.StudentAssistant.Text.Neutral90" />
+
         <SeekBar
             android:id="@+id/project_edit_number_value"
             android:layout_width="match_parent"

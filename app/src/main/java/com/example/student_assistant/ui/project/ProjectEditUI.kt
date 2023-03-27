@@ -1,26 +1,27 @@
 package com.example.student_assistant.ui.project
 
 import android.app.DatePickerDialog
-import android.util.Log
+import android.content.Context
 import android.view.View
 import android.widget.EditText
+import android.widget.SeekBar
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.student_assistant.ui.project.adapter.ProjectParametersAdapter
-import java.text.DateFormat
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.util.Calendar
 import java.util.Date
-import java.util.GregorianCalendar
 import java.util.Locale
 import javax.inject.Inject
+
 
 class ProjectEditUI @Inject constructor(
     private val fragment: ProjectEditFragment,
     private val adapter: ProjectParametersAdapter,
 ) {
+
+    private val formatter = SimpleDateFormat("dd.MM.yyyy",  Locale("ru"))
 
     fun navigate() {
         fragment.binding.apply {
@@ -33,6 +34,19 @@ class ProjectEditUI @Inject constructor(
     fun setupHandlers() {
         fragment.binding.apply {
             projectEditNumberValue.max = 10
+            projectEditNumberValue.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                    return
+                }
+
+                override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                    return
+                }
+
+                override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                    projectEditTvNumberValue.text = progress.toString()
+                }
+            })
             projectBtnSave.setOnClickListener {
                 fragment.viewModel.setProject(
                     projectEditName.text.toString(),
@@ -61,7 +75,6 @@ class ProjectEditUI @Inject constructor(
                     set(Calendar.MONTH, m)
                     set(Calendar.DATE, d)
                 }.time.time)
-                val formatter = SimpleDateFormat("dd.MM.yyyy",  Locale("ru"))
                 editText.setText(formatter.format(date))
             }
             DatePickerDialog(
@@ -85,13 +98,18 @@ class ProjectEditUI @Inject constructor(
                 }
             }
             project.observe(fragment.viewLifecycleOwner) {
-                if (it != null) {
-                    fragment.binding.apply {
+                fragment.binding.apply {
+                    if (it != null) {
                         projectEditName.setText(it.title)
                         projectEditDesc.setText(it.description)
                         projectEditFrom.setText(it.plannedStartOfWork)
                         projectEditTo.setText(it.plannedFinishOfWork)
                         projectEditRecTo.setText(it.applicationsDeadline)
+                    } else {
+                        val date = formatter.format(Date())
+                        projectEditFrom.setText(date)
+                        projectEditTo.setText(date)
+                        projectEditRecTo.setText(date)
                     }
                 }
             }
