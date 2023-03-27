@@ -80,9 +80,14 @@ class UserRepository @Inject constructor(
     override suspend fun getUser(): Result<UserInfo> {
         return try {
             val cachedUser = dao.getUser()[0]
-            val user = apiMapper.map(api.getUser(mapper.mapToLoginInfo(cachedUser).email))
-            dao.setUser(mapper.mapFromUserInfo(user, cachedUser.email))
-            Result.success(user)
+            val remoteUser = apiMapper.map(api.getUser(mapper.mapToLoginInfo(cachedUser).email))
+            val localUser = mapper.mapToUserInfo(cachedUser)
+            if (localUser != null) {
+                Result.success(UserInfo(localUser.isStudent, localUser.name, localUser.bio, localUser.contacts, remoteUser.tags))
+            } else {
+                Result.failure(IllegalStateException())
+            }
+//            dao.setUser(mapper.mapFromUserInfo(user, cachedUser.email))
         } catch (exc: IllegalStateException) {
             Result.failure(exc)
         } catch (exc: Exception) {
