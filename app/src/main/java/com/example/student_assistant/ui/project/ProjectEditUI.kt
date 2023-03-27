@@ -19,7 +19,7 @@ class ProjectEditUI @Inject constructor(
         val navController = fragment.findNavController()
         fragment.binding.apply {
             ivClose.setOnClickListener {
-                navController.popBackStack()
+                fragment.requireActivity().finish()
             }
         }
     }

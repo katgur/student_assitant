@@ -41,7 +41,6 @@ class ParameterAdapter @Inject constructor(diffCalculator: ParameterValueDiffCal
 
     inner class ParameterViewHolder(private val binding: ItemParameterBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ParameterValue, parameter: Parameter?, onClick: ((Parameter) -> Unit)?) {
-            Log.d("kek", parameter.toString())
             if (parameter == null) {
                 return
             }
