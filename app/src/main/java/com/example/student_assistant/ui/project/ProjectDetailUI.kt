@@ -55,6 +55,8 @@ class ProjectDetailUI @Inject constructor(
                     detailsTvName.text = it.title
                     detailsTvTime.text = "С ${it.plannedStartOfWork} до ${it.plannedFinishOfWork}"
                     detailsTvDescriptionVal.text = it.description
+                    detailsTvAuthorVal.text = it.author
+                    detailsTvCurCountVal.text = it.currentNumberOfStudents.toString()
                     detailsTvCountVal.text = it.maxNumberOfStudents.toString()
                     detailsTvStatusVal.text = it.projectStatus
                     detailsTvRecStatusVal.text = it.recruitingStatus

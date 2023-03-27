@@ -66,7 +66,7 @@ class ProjectEditUI @Inject constructor(
             }
             updated.observe(fragment.viewLifecycleOwner) {
                 if (it) {
-                    fragment.findNavController().popBackStack()
+                    fragment.requireActivity().finish()
                 }
             }
             message.observe(fragment.viewLifecycleOwner) {

@@ -79,7 +79,6 @@ class ProjectViewModel @Inject constructor(
             viewModelScope.launch {
                 val result = repository.getProject(id)
                 if (result.isSuccess) {
-                    Log.d("kekp", result.getOrNull().toString())
                     _project.postValue(result.getOrNull())
                 } else {
                     _message.postValue(result.exceptionOrNull()?.message)
@@ -160,12 +159,13 @@ class ProjectViewModel @Inject constructor(
         plannedFinishOfWork: String,
         tags: List<String>,
     ) {
+        val project = _project.value ?: return
         viewModelScope.launch {
             val result = repository.updateProject(
                 Project(
                     id,
-                    "",
-                    "",
+                    project.authorEmail,
+                    project.author,
                     title,
                     description,
                     -1,
@@ -213,7 +213,7 @@ class ProjectViewModel @Inject constructor(
             )
             if (result.isSuccess) {
                 _updated.postValue(true)
-                _message.postValue("Project updated successfully")
+                _message.postValue("Project created successfully")
             } else {
                 _message.postValue(result.exceptionOrNull()?.message)
             }

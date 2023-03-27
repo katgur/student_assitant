@@ -76,6 +76,23 @@
         android:layout_marginHorizontal="24dp" />
 
     <TextView
+        android:id="@+id/details_tv_author"
+        style="@style/TextAppearance.StudentAssistant.SmallTitle.Neutral90"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginVertical="4dp"
+        android:text="Автор"
+        android:textColor="@color/neutral90" />
+
+    <TextView
+        android:id="@+id/details_tv_author_val"
+        style="@style/TextAppearance.StudentAssistant.Text.Neutral90"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp" />
+
+    <TextView
         android:id="@+id/details_tv_count"
         style="@style/TextAppearance.StudentAssistant.SmallTitle.Neutral90"
         android:layout_width="wrap_content"
@@ -87,6 +104,23 @@
 
     <TextView
         android:id="@+id/details_tv_count_val"
+        style="@style/TextAppearance.StudentAssistant.Text.Neutral90"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp" />
+
+    <TextView
+        android:id="@+id/details_tv_cur_count"
+        style="@style/TextAppearance.StudentAssistant.SmallTitle.Neutral90"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginVertical="4dp"
+        android:text="Текущее количество студентов"
+        android:textColor="@color/neutral90" />
+
+    <TextView
+        android:id="@+id/details_tv_cur_count_val"
         style="@style/TextAppearance.StudentAssistant.Text.Neutral90"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
