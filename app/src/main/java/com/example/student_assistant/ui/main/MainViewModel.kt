@@ -69,7 +69,7 @@ class MainViewModel(
         }
     }
 
-    fun setPage(value: Int) {
+    fun setPage(value: Int = _page.value!!) {
         _page.value = value
         suspendableLaunch {
             val result = if (value == R.id.rb_all) {
@@ -100,7 +100,6 @@ class MainViewModel(
 
     fun setQuery(query: String) {
         val parameters = _parameters.value ?: return
-        Log.d("kek", parameters.joinToString { it.toString() })
         val statuses = parameters.map { p ->
             p.chosen.map { i ->
                 p.values[i]

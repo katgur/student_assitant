@@ -60,6 +60,9 @@ class MainUI @Inject constructor(
             mainIbParam.setOnClickListener {
                 fragment.findNavController().navigate(MainFragmentDirections.actionMainFragmentToMainParametersFragment())
             }
+            mainSrl.setOnRefreshListener {
+                fragment.viewModel.setPage()
+            }
         }
     }
 
@@ -87,7 +90,7 @@ class MainUI @Inject constructor(
                 }
             }
             isLoading.observe(fragment.viewLifecycleOwner) {
-                fragment.binding.mainPb.visibility = if (it) View.VISIBLE else View.GONE
+                fragment.binding.mainSrl.isRefreshing = it
             }
         }
         EnumUtil.query.observe(fragment.viewLifecycleOwner) { fragment.viewModel.setQuery(it) }

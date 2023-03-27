@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main_cl"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_cl"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -30,18 +30,18 @@
                     android:id="@+id/main_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="Проекты"
                     android:textAppearance="@style/TextAppearance.StudentAssistant.LargeTitle.Neutral90"
-                    android:text="Проекты" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <SearchView
                     android:id="@+id/main_et_search"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
                     android:background="@drawable/bg_search"
                     app:layout_constraintEnd_toStartOf="@id/main_ib_param"
                     app:layout_constraintStart_toStartOf="parent"
@@ -55,8 +55,8 @@
                     android:layout_marginEnd="8dp"
                     android:src="@drawable/ic_filter"
                     app:layout_constraintBottom_toBottomOf="@id/main_et_search"
-                    app:layout_constraintStart_toEndOf="@id/main_et_search"
                     app:layout_constraintEnd_toStartOf="@id/main_ib_plus"
+                    app:layout_constraintStart_toEndOf="@id/main_et_search"
                     app:layout_constraintTop_toTopOf="@id/main_et_search" />
 
                 <ImageButton
@@ -66,16 +66,16 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_plus"
                     app:layout_constraintBottom_toBottomOf="@id/main_et_search"
-                    app:layout_constraintStart_toEndOf="@id/main_ib_param"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/main_ib_param"
                     app:layout_constraintTop_toTopOf="@id/main_et_search" />
 
                 <RadioGroup
                     android:id="@+id/main_rg_tabs"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_marginTop="12dp"
+                    android:orientation="horizontal"
                     app:layout_constraintTop_toBottomOf="@id/main_et_search">
 
                     <RadioButton
@@ -123,18 +123,23 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/main_rv"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/main_srl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/main_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <ProgressBar
         android:id="@+id/main_pb"
-        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:visibility="gone" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
