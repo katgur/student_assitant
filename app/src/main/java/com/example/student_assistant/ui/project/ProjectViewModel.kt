@@ -25,6 +25,8 @@ class ProjectViewModel @Inject constructor(
     val id: LiveData<Int> = _id
     private val _updated = MutableLiveData<Boolean>()
     val updated: LiveData<Boolean> = _updated
+    private val _isAuthor = MutableLiveData<Boolean>()
+    val isAuthor: LiveData<Boolean> = _isAuthor
 
     val list = listOf("Статус проекта", "Статус набора", "Тэги")
     val statuses = listOf("Не начат", "Начат", "Завершен")
@@ -80,6 +82,8 @@ class ProjectViewModel @Inject constructor(
                 val result = repository.getProject(id)
                 if (result.isSuccess) {
                     _project.postValue(result.getOrNull())
+                    val result1 = repository.isUserTheAuthor(result.getOrNull()!!)
+                    _isAuthor.postValue(result1.getOrNull())
                 } else {
                     _message.postValue(result.exceptionOrNull()?.message)
                 }

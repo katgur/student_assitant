@@ -23,4 +23,6 @@ interface IProjectRepository {
     suspend fun getRecommendedProjects(): Result<List<Card>>
 
     suspend fun joinProject(projectId: Int): Result<Unit>
+
+    suspend fun isUserTheAuthor(project: Project): Result<Boolean>
 }

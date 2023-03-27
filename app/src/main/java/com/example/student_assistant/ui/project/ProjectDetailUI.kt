@@ -51,6 +51,12 @@ class ProjectDetailUI @Inject constructor(
 
     fun observe() {
         fragment.viewModel.apply {
+            isAuthor.observe(fragment.viewLifecycleOwner) {
+                fragment.binding.apply {
+                    detailsIvEdit.visibility = if (it) View.VISIBLE else View.GONE
+                    detailsJoin.visibility = if (it) View.VISIBLE else View.GONE
+                }
+            }
             project.observe(fragment.viewLifecycleOwner) {
                 fragment.binding.apply {
                     detailsTvName.text = it.title

@@ -144,4 +144,18 @@ class ProjectRepository @Inject constructor(
             Result.failure(exc)
         }
     }
+
+    override suspend fun isUserTheAuthor(project: Project): Result<Boolean> {
+        return try {
+            val cachedUser = userDao.getUser()
+            if (cachedUser.isNotEmpty()) {
+                val cachedLoginInfo = userMapper.mapToLoginInfo(cachedUser[0])
+                Result.success(project.authorEmail == cachedLoginInfo.email)
+            } else {
+                Result.failure(IllegalStateException("User is not authorized"))
+            }
+        } catch (exc: IllegalStateException) {
+            Result.failure(exc)
+        }
+    }
 }
