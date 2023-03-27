@@ -47,21 +47,11 @@ class MainUI @Inject constructor(
             val searchManager = fragment.requireContext().getSystemService(Context.SEARCH_SERVICE) as SearchManager
             mainEtSearch.setSearchableInfo(searchManager.getSearchableInfo(fragment.requireActivity().componentName))
             mainEtSearch.setOnSearchClickListener {
-                mainRgTabs.visibility = View.GONE
-                mainIbPlus.visibility = View.GONE
-                mainRgTabs.visibility = View.GONE
-                mainIvMore.visibility = View.GONE
-                mainTitle.visibility = View.GONE
+                fragment.viewModel.setIsSearching(true)
                 mainAbl.setExpanded(false)
             }
             mainEtSearch.setOnCloseListener {
-                mainRgTabs.visibility = View.VISIBLE
-                mainIbPlus.visibility = View.VISIBLE
-                mainRgTabs.visibility = View.VISIBLE
-                mainIvMore.visibility = View.VISIBLE
-                mainTitle.visibility = View.VISIBLE
-                mainAbl.setExpanded(true)
-                fragment.viewModel.setPage(R.id.rb_all)
+                fragment.viewModel.setIsSearching(false)
                 return@setOnCloseListener false
             }
             mainRgTabs.setOnCheckedChangeListener { _, i ->
@@ -78,6 +68,16 @@ class MainUI @Inject constructor(
             isAuthorized.observe(fragment.viewLifecycleOwner) {
                 if (!it) {
                     fragment.requireActivity().finish()
+                }
+            }
+            isSearching.observe(fragment.viewLifecycleOwner) {
+                fragment.binding.apply {
+                    mainRgTabs.visibility = if (it) View.GONE else View.VISIBLE
+                    mainIbPlus.visibility = if (it) View.GONE else View.VISIBLE
+                    mainRgTabs.visibility = if (it) View.GONE else View.VISIBLE
+                    mainIvMore.visibility = if (it) View.GONE else View.VISIBLE
+                    mainTitle.visibility = if (it) View.GONE else View.VISIBLE
+                    mainAbl.setExpanded(!it)
                 }
             }
             cards.observe(fragment.viewLifecycleOwner) { items -> adapter.submitList(items) }

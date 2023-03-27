@@ -17,6 +17,8 @@ class MainViewModel(
 
     private val _isAuthorized = MutableLiveData<Boolean>()
     val isAuthorized: LiveData<Boolean> = _isAuthorized
+    private val _isSearching = MutableLiveData<Boolean>()
+    val isSearching: LiveData<Boolean> = _isSearching
     private val _cards = MutableLiveData<List<Card>>(emptyList())
     val cards: LiveData<List<Card>> = _cards
     private val _page = MutableLiveData(R.id.rb_all)
@@ -34,6 +36,10 @@ class MainViewModel(
         _parameters.value = names.mapIndexed {index, name ->
             Parameter(name, statuses, mutableSetOf(0), pages[index])
         }
+    }
+
+    fun setIsSearching(value: Boolean) {
+        _isSearching.value = value
     }
 
     fun reset() {
